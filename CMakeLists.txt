@@ -18,7 +18,7 @@ add_library(aboo SHARED ${LIB_SRC})
 
 add_executable(test tests/test.cpp)
 add_dependencies(test aboo)
-target_link_libraries(test aboo)
+target_link_libraries(test aboo -lyaml-cpp)
 
 add_executable(test_config tests/test_config.cpp)
 add_dependencies(test_config aboo)

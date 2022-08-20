@@ -27,14 +27,23 @@ void test_yaml() {
 	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/log.yml");
 	print_yaml(root, 0);
 
-	// ABOO_LOG_INFO(ABOO_LOG_ROOT()) << root;
+	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << root;
+}
+
+void test_config() {
+	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "before: " << g_int_value_config->getValue();
+	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "before: " << g_float_value_config->toString();
+
+	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/log.yml");
+	aboo::Config::LoadFromYaml(root);
+
+	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "after: " << g_int_value_config->getValue();
+	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "after: " << g_float_value_config->toString();
 }
 
 int main(int argc, char **argv) {
-	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << g_int_value_config->getValue();
-	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << g_float_value_config->toString();
-
-	test_yaml();
+	test_config();
+	// test_yaml();
 
 	return 0;
 }

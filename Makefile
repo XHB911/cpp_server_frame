@@ -145,6 +145,43 @@ test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 .PHONY : test/fast
 
+#=============================================================================
+# Target rules for targets named test_config
+
+# Build rule for target.
+test_config: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_config
+.PHONY : test_config
+
+# fast build rule for target.
+test_config/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
+.PHONY : test_config/fast
+
+aboo/config.o: aboo/config.cpp.o
+.PHONY : aboo/config.o
+
+# target to build an object file
+aboo/config.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/config.cpp.o
+.PHONY : aboo/config.cpp.o
+
+aboo/config.i: aboo/config.cpp.i
+.PHONY : aboo/config.i
+
+# target to preprocess a source file
+aboo/config.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/config.cpp.i
+.PHONY : aboo/config.cpp.i
+
+aboo/config.s: aboo/config.cpp.s
+.PHONY : aboo/config.s
+
+# target to generate assembly for a file
+aboo/config.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/config.cpp.s
+.PHONY : aboo/config.cpp.s
+
 aboo/log.o: aboo/log.cpp.o
 .PHONY : aboo/log.o
 
@@ -217,6 +254,30 @@ tests/test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/test.cpp.s
 .PHONY : tests/test.cpp.s
 
+tests/test_config.o: tests/test_config.cpp.o
+.PHONY : tests/test_config.o
+
+# target to build an object file
+tests/test_config.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cpp.o
+.PHONY : tests/test_config.cpp.o
+
+tests/test_config.i: tests/test_config.cpp.i
+.PHONY : tests/test_config.i
+
+# target to preprocess a source file
+tests/test_config.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cpp.i
+.PHONY : tests/test_config.cpp.i
+
+tests/test_config.s: tests/test_config.cpp.s
+.PHONY : tests/test_config.s
+
+# target to generate assembly for a file
+tests/test_config.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cpp.s
+.PHONY : tests/test_config.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -227,6 +288,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... aboo"
 	@echo "... test"
+	@echo "... test_config"
+	@echo "... aboo/config.o"
+	@echo "... aboo/config.i"
+	@echo "... aboo/config.s"
 	@echo "... aboo/log.o"
 	@echo "... aboo/log.i"
 	@echo "... aboo/log.s"
@@ -236,6 +301,9 @@ help:
 	@echo "... tests/test.o"
 	@echo "... tests/test.i"
 	@echo "... tests/test.s"
+	@echo "... tests/test_config.o"
+	@echo "... tests/test_config.i"
+	@echo "... tests/test_config.s"
 .PHONY : help
 
 

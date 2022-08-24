@@ -292,8 +292,8 @@ public:
 
 	template<class T>
 	static typename ConfigVar<T>::ptr Lookup(const std::string& name, const T& default_value, const std::string& description = "") {
-		auto it = s_datas.find(name);
-		if (it != s_datas.end()) {
+		auto it = getDatas().find(name);
+		if (it != getDatas().end()) {
 			auto tmp = std::dynamic_pointer_cast<ConfigVar<T> >(it->second);
 			if (tmp) {
 				ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "Lookup name=" << name << " exists";
@@ -310,14 +310,14 @@ public:
 		}
 
 		typename ConfigVar<T>::ptr v(new ConfigVar<T>(name, default_value, description));
-		s_datas[name] = v;
+		getDatas()[name] = v;
 		return v;
 	}
 
 	template<class T>
 	static typename ConfigVar<T>::ptr Lookup(const std::string& name) {
-		auto it = s_datas.find(name);
-		if (it == s_datas.end()) {
+		auto it = getDatas().find(name);
+		if (it == getDatas().end()) {
 			return nullptr;
 		}
 		return std::dynamic_pointer_cast<ConfigVar<T> >(it->second);
@@ -326,7 +326,10 @@ public:
 	static void LoadFromYaml(const YAML::Node& root);
 	static ConfigVarBase::ptr LookupBase(const std::string& name);
 private:
-	static ConfigVarMap s_datas;
+	static ConfigVarMap& getDatas() {
+		static ConfigVarMap s_datas;
+		return s_datas;
+	}
 };
 
 }

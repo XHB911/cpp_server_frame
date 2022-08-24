@@ -1,6 +1,7 @@
 #include "../aboo/config.h"
 #include "../aboo/log.h"
 #include <yaml-cpp/yaml.h>
+#include <iostream>
 
 aboo::ConfigVar<int>::ptr g_int_value_config = aboo::Config::Lookup("system.port", (int)8080, "system port");
 aboo::ConfigVar<float>::ptr g_int_valuex_config = aboo::Config::Lookup("system.port", (float)8080, "system port");
@@ -33,7 +34,7 @@ void print_yaml(const YAML::Node& node, int level) {
 }
 
 void test_yaml() {
-	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/log.yml");
+	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/test.yml");
 	print_yaml(root, 0);
 
 	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << root;
@@ -70,7 +71,7 @@ void test_config() {
 	XX_M(g_int_char_map_value_config, int_char_map, before);
 //	XX_M(g_str_int_umap_value_config, str_int_umap, before);
 
-	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/log.yml");
+	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/test.yml");
 	aboo::Config::LoadFromYaml(root);
 
 //	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "after: " << g_int_value_config->getValue();
@@ -157,7 +158,7 @@ void test_class() {
 
 	XX_PM(g_person_map, "class map before");
 
-	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/log.yml");
+	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/test.yml");
 	aboo::Config::LoadFromYaml(root);
 
 	ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "after: " << g_person->getValue().toString() << " - " << g_person->toString();
@@ -165,10 +166,27 @@ void test_class() {
 
 }
 
+void test_log() {
+	static aboo::Logger::ptr system_log = ABOO_LOG_NAME("system");
+	ABOO_LOG_INFO(system_log) << "hello system" << std::endl;
+	std::cout << aboo::LoggerMgr::getInstance()->toYamlString() << std::endl;
+
+	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/log.yml");
+	aboo::Config::LoadFromYaml(root);
+
+	std::cout << "------------------------------------------------\n";
+
+	std::cout << aboo::LoggerMgr::getInstance()->toYamlString() << std::endl;
+	ABOO_LOG_INFO(system_log) << "hello system" << std::endl;
+
+	system_log->setFormatter("%d - %m%n");
+	ABOO_LOG_INFO(system_log) << "hello system" << std::endl;
+}
+
 int main(int argc, char **argv) {
-	test_config();
+	// test_config();
 	// test_yaml();
 	// test_class();
-
+	test_log();
 	return 0;
 }

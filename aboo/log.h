@@ -3,6 +3,7 @@
 
 #include <string>
 #include <stdint.h>
+#include <iostream>
 #include <memory>
 #include <list>
 #include <sstream>
@@ -33,10 +34,12 @@
 #define ABOO_LOG_FMT_FATAL(logger, fmt, ...) ABOO_LOG_FMT_LEVEL(logger, aboo::LogLevel::FATAL, fmt, __VA_ARGS__)
 
 #define ABOO_LOG_ROOT() aboo::LoggerMgr::getInstance()->getRoot()
+#define ABOO_LOG_NAME(name) aboo::LoggerMgr::getInstance()->getLogger(name)
 
 namespace aboo {
 
 class Logger;
+class LoggerManager;
 
 // 日志级别
 class LogLevel{
@@ -51,6 +54,7 @@ public:
 	};
 
 	static const char* ToString(LogLevel::Level level);
+	static LogLevel::Level FromString(const std::string& str);
 };
 
 // 日志事件
@@ -99,6 +103,7 @@ class LogFormatter {
 public:
 	typedef std::shared_ptr<LogFormatter> ptr;
 	LogFormatter(const std::string& pattern);
+
 	void format(std::ostream& os, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event);
 	class FormatItem {
 	public:
@@ -107,29 +112,44 @@ public:
 		virtual void format(std::ostream& os, std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
 	};
 	void init();
+
+	bool isError() const { return m_error; }
+	void setPattern(const std::string& str) { 
+		std::cout << "\n\n////////////////" << str << "\\\\\\\\\n\n";
+		m_pattern = str;
+		std::cout << "\n\n\\\\\\\\\\\\\\" << str << "///////////\n\n";
+	}
+	const std::string getPattern() { return m_pattern; }
 private:
 	std::string m_pattern;
 	std::vector<FormatItem::ptr> m_items;
+	bool m_error = false;
 };
 
 // 日志目标输出
 class LogAppender {
+friend class Logger;
 public:
 	typedef std::shared_ptr<LogAppender> ptr;
 	virtual ~LogAppender() { }
 	virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
-	void setFormatter(LogFormatter::ptr val) { m_formatter = val; }
+
+	virtual std::string toYamlString() = 0;
+
+	void setFormatter(LogFormatter::ptr val);
 	LogFormatter::ptr getFormatter() const { return m_formatter; }
 
 	LogLevel::Level getLevel() const { return m_level; }
 	void setLevel(LogLevel::Level val) { m_level = val; }
 protected:
 	LogLevel::Level m_level;
+	bool m_hasFormatter = false;
 	LogFormatter::ptr m_formatter;
 };
 
 // 日志器
 class Logger : public std::enable_shared_from_this<Logger> {
+friend class LoggerManager;
 public:
 	typedef std::shared_ptr<Logger> ptr;
 
@@ -144,27 +164,35 @@ public:
 
 	void addAppender(LogAppender::ptr appender);
 	void delAppender(LogAppender::ptr appender);
+	void clearAppenders();
+	const std::string& getName() const { return m_name; }
+	LogFormatter::ptr getFormatter();
 	LogLevel::Level getLevel() const { return m_level; }
 	void setLevel(LogLevel::Level val) { m_level = val; }
+	void setFormatter(LogFormatter::ptr val);
+	void setFormatter(std::string val);
 
-	const std::string& getName() const { return m_name; }
+	std::string toYamlString();
 private:
 	std::string m_name;			//日志名称
 	LogLevel::Level m_level;		//日志级别
 	std::list<LogAppender::ptr> m_appenders;//Appender集合
 	LogFormatter::ptr m_formatter;
+	Logger::ptr m_root;
 };
 
 class StdoutLogAppender : public LogAppender {
 public:
 	typedef std::shared_ptr<StdoutLogAppender> ptr;
 	void log(Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override;
+	std::string toYamlString() override;
 };
 
 class FileLogAppender : public LogAppender {
 public:
 	typedef std::shared_ptr<FileLogAppender> ptr;
 	void log(Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override;
+	std::string toYamlString() override;
 	FileLogAppender(const std::string &filename);
 	FileLogAppender() = default;
 	bool reopen();
@@ -180,6 +208,8 @@ public:
 
 	void init();
 	Logger::ptr getRoot() const { return m_root; }
+
+	std::string toYamlString();
 private:
 	std::map<std::string, Logger::ptr> m_loggers;
 	Logger::ptr m_root;

@@ -3,6 +3,7 @@
 namespace aboo {
 
 ConfigVarBase::ptr Config::LookupBase(const std::string& name) {
+	RWMutexType::ReadLock lock(GetMutex());
 	auto it = getDatas().find(name);
 	return it == getDatas().end() ? nullptr : it->second;
 }
@@ -44,6 +45,14 @@ void Config::LoadFromYaml(const YAML::Node& root) {
 				var->fromString(ss.str());
 			}
 		}
+	}
+}
+
+void Config::Visit(std::function<void (ConfigVarBase::ptr)> cb) {
+	RWMutexType::ReadLock lock(GetMutex());
+	ConfigVarMap& m = getDatas();
+	for (auto it = m.begin(); it != m.end(); it++) {
+		cb(it->second);
 	}
 }
 

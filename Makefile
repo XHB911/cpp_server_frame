@@ -171,6 +171,32 @@ test_thread/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
 .PHONY : test_thread/fast
 
+#=============================================================================
+# Target rules for targets named test_util
+
+# Build rule for target.
+test_util: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_util
+.PHONY : test_util
+
+# fast build rule for target.
+test_util/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
+.PHONY : test_util/fast
+
+#=============================================================================
+# Target rules for targets named test_fiber
+
+# Build rule for target.
+test_fiber: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_fiber
+.PHONY : test_fiber
+
+# fast build rule for target.
+test_fiber/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/build
+.PHONY : test_fiber/fast
+
 aboo/config.o: aboo/config.cpp.o
 .PHONY : aboo/config.o
 
@@ -194,6 +220,30 @@ aboo/config.s: aboo/config.cpp.s
 aboo/config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/config.cpp.s
 .PHONY : aboo/config.cpp.s
+
+aboo/fiber.o: aboo/fiber.cpp.o
+.PHONY : aboo/fiber.o
+
+# target to build an object file
+aboo/fiber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/fiber.cpp.o
+.PHONY : aboo/fiber.cpp.o
+
+aboo/fiber.i: aboo/fiber.cpp.i
+.PHONY : aboo/fiber.i
+
+# target to preprocess a source file
+aboo/fiber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/fiber.cpp.i
+.PHONY : aboo/fiber.cpp.i
+
+aboo/fiber.s: aboo/fiber.cpp.s
+.PHONY : aboo/fiber.s
+
+# target to generate assembly for a file
+aboo/fiber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/fiber.cpp.s
+.PHONY : aboo/fiber.cpp.s
 
 aboo/log.o: aboo/log.cpp.o
 .PHONY : aboo/log.o
@@ -315,6 +365,30 @@ tests/test_config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cpp.s
 .PHONY : tests/test_config.cpp.s
 
+tests/test_fiber.o: tests/test_fiber.cpp.o
+.PHONY : tests/test_fiber.o
+
+# target to build an object file
+tests/test_fiber.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.o
+.PHONY : tests/test_fiber.cpp.o
+
+tests/test_fiber.i: tests/test_fiber.cpp.i
+.PHONY : tests/test_fiber.i
+
+# target to preprocess a source file
+tests/test_fiber.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.i
+.PHONY : tests/test_fiber.cpp.i
+
+tests/test_fiber.s: tests/test_fiber.cpp.s
+.PHONY : tests/test_fiber.s
+
+# target to generate assembly for a file
+tests/test_fiber.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.s
+.PHONY : tests/test_fiber.cpp.s
+
 tests/test_thread.o: tests/test_thread.cpp.o
 .PHONY : tests/test_thread.o
 
@@ -339,6 +413,30 @@ tests/test_thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cpp.s
 .PHONY : tests/test_thread.cpp.s
 
+tests/test_util.o: tests/test_util.cpp.o
+.PHONY : tests/test_util.o
+
+# target to build an object file
+tests/test_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cpp.o
+.PHONY : tests/test_util.cpp.o
+
+tests/test_util.i: tests/test_util.cpp.i
+.PHONY : tests/test_util.i
+
+# target to preprocess a source file
+tests/test_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cpp.i
+.PHONY : tests/test_util.cpp.i
+
+tests/test_util.s: tests/test_util.cpp.s
+.PHONY : tests/test_util.s
+
+# target to generate assembly for a file
+tests/test_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/tests/test_util.cpp.s
+.PHONY : tests/test_util.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -350,10 +448,15 @@ help:
 	@echo "... aboo"
 	@echo "... test"
 	@echo "... test_config"
+	@echo "... test_fiber"
 	@echo "... test_thread"
+	@echo "... test_util"
 	@echo "... aboo/config.o"
 	@echo "... aboo/config.i"
 	@echo "... aboo/config.s"
+	@echo "... aboo/fiber.o"
+	@echo "... aboo/fiber.i"
+	@echo "... aboo/fiber.s"
 	@echo "... aboo/log.o"
 	@echo "... aboo/log.i"
 	@echo "... aboo/log.s"
@@ -369,9 +472,15 @@ help:
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
+	@echo "... tests/test_fiber.o"
+	@echo "... tests/test_fiber.i"
+	@echo "... tests/test_fiber.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
+	@echo "... tests/test_util.o"
+	@echo "... tests/test_util.i"
+	@echo "... tests/test_util.s"
 .PHONY : help
 
 

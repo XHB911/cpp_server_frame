@@ -9,10 +9,11 @@ set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-de
 link_directories(/usr/local/lib)
 
 set(LIB_SRC
-	aboo/log.cpp
-	aboo/util.cpp
 	aboo/config.cpp
+	aboo/fiber.cpp
+	aboo/log.cpp
 	aboo/thread.cpp
+	aboo/util.cpp
 	)
 
 add_library(aboo SHARED ${LIB_SRC})
@@ -40,6 +41,16 @@ add_executable(test_thread tests/test_thread.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_thread aboo)
 target_link_libraries(test_thread ${LIB_LIB})
+
+add_executable(test_util tests/test_util.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_util aboo)
+target_link_libraries(test_util ${LIB_LIB})
+
+add_executable(test_fiber tests/test_fiber.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_fiber aboo)
+target_link_libraries(test_fiber ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

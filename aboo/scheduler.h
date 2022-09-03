@@ -26,16 +26,16 @@ public:
 	void stop();
 
 	template<class FiberOrCb>
-		void schedule(FiberOrCb fc, int thread = -1) {
-			bool need_tickle = false;
-			{
-				MutexType::Lock lock(m_mutex);
-				need_tickle = scheduleNoLock(fc, thread);
-			}
-			if (need_tickle) {
-				tickle();
-			}
+	void schedule(FiberOrCb fc, int thread = -1) {
+		bool need_tickle = false;
+		{
+			MutexType::Lock lock(m_mutex);
+			need_tickle = scheduleNoLock(fc, thread);
 		}
+		if (need_tickle) {
+			tickle();
+		}
+	}
 
 	template<class InputIterator>
 	void schedule(InputIterator begin, InputIterator end) {

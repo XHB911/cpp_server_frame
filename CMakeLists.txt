@@ -13,6 +13,7 @@ set(LIB_SRC
 	aboo/fiber.cpp
 	aboo/log.cpp
 	aboo/thread.cpp
+	aboo/scheduler.cpp
 	aboo/util.cpp
 	)
 
@@ -51,6 +52,11 @@ add_executable(test_fiber tests/test_fiber.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_fiber aboo)
 target_link_libraries(test_fiber ${LIB_LIB})
+
+add_executable(test_scheduler tests/test_scheduler.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_scheduler aboo)
+target_link_libraries(test_scheduler ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

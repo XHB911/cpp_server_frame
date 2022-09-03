@@ -2,6 +2,7 @@
 #include "config.h"
 #include "macro.h"
 #include "log.h"
+#include "scheduler.h"
 
 #include <atomic>
 
@@ -48,7 +49,7 @@ Fiber::Fiber() {
 	ABOO_LOG_DEBUG(g_logger) << "Fiber::Fiber()";
 }
 
-Fiber::Fiber(std::function<void()> cb, size_t stacksize) : m_id(++s_fiber_id), m_cb(cb) {
+Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller) : m_id(++s_fiber_id), m_cb(cb) {
 	++s_fiber_count;
 	m_stacksize = stacksize ? stacksize : g_fiber_stack_size->getValue();
 
@@ -60,7 +61,11 @@ Fiber::Fiber(std::function<void()> cb, size_t stacksize) : m_id(++s_fiber_id), m
 	m_ctx.uc_stack.ss_sp = m_stack;
 	m_ctx.uc_stack.ss_size = m_stacksize;
 
-	makecontext(&m_ctx, &Fiber::MainFunc, 0);
+	if (!use_caller) {
+		makecontext(&m_ctx, &Fiber::MainFunc, 0);
+	} else {
+		makecontext(&m_ctx, &Fiber::CallerMainFunc, 0);
+	}
 
 	ABOO_LOG_DEBUG(g_logger) << "Fiber::Fiber() id=" << m_id;
 }
@@ -97,21 +102,35 @@ void Fiber::reset(std::function<void()> cb) {
 	m_state = INIT;
 }
 
-// 切换到当前协程执行
-void Fiber::swapIn() {
+void Fiber::call() {
 	SetThis(this);
-	ABOO_ASSERT(m_state != EXEC);
 	m_state = EXEC;
 	if (swapcontext(&t_threadFiber->m_ctx, &m_ctx)) {
 		ABOO_ASSERT2(false, "swapcontext");
 	}
 }
 
+void Fiber::back() {
+	SetThis(t_threadFiber.get());
+	if (swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
+		ABOO_ASSERT2(false, "swapcontext");
+	}
+}
+
+// 切换到当前协程执行
+void Fiber::swapIn() {
+	SetThis(this);
+	ABOO_ASSERT(m_state != EXEC);
+	m_state = EXEC;
+	if (swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)) {
+		ABOO_ASSERT2(false, "swapcontext");
+	}
+}
+
 // 切换到后台
 void Fiber::swapOut() {
-	SetThis(t_threadFiber.get());
-
-	if (swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
+	SetThis(Scheduler::GetMainFiber());
+	if (swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)) {
 		ABOO_ASSERT2(false, "swapcontext");
 	}
 }
@@ -160,15 +179,39 @@ void Fiber::MainFunc() {
 		cur->m_state = TERM;
 	} catch (std::exception& ex) {
 		cur->m_state = EXCEPT;
-		ABOO_LOG_ERROR(g_logger) << "Fiber Except: " << ex.what();
+		ABOO_LOG_ERROR(g_logger) << "Fiber Except: " << "fiber_id=" << cur->getId() << ex.what() << std::endl << aboo::BacktraceToString();
 	} catch (...) {
 		cur->m_state = EXCEPT;
-		ABOO_LOG_ERROR(g_logger) << "Fiber Except";
+		ABOO_LOG_ERROR(g_logger) << "Fiber Except: " << "fiber_id=" << cur->getId() << std::endl << aboo::BacktraceToString();
 	}
 
 	auto raw_ptr = cur.get();
 	cur.reset();
 	raw_ptr->swapOut();
+
+	ABOO_ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
+}
+
+void Fiber::CallerMainFunc() {
+	Fiber::ptr cur = GetThis();
+	ABOO_ASSERT(cur);
+	try {
+		cur->m_cb();
+		cur->m_cb = nullptr;
+		cur->m_state = TERM;
+	} catch (std::exception& ex) {
+		cur->m_state = EXCEPT;
+		ABOO_LOG_ERROR(g_logger) << "Fiber Except: " << "fiber_id=" << cur->getId() << ex.what() << std::endl << aboo::BacktraceToString();
+	} catch (...) {
+		cur->m_state = EXCEPT;
+		ABOO_LOG_ERROR(g_logger) << "Fiber Except: " << "fiber_id=" << cur->getId() << std::endl << aboo::BacktraceToString();
+	}
+
+	auto raw_ptr = cur.get();
+	cur.reset();
+	raw_ptr->back();
+
+	ABOO_ASSERT2(false, "never reach fiber_id=" + std::to_string(raw_ptr->getId()));
 }
 
 }

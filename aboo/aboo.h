@@ -6,6 +6,7 @@
 #include "../aboo/log.h"
 #include "../aboo/macro.h"
 #include "../aboo/util.h"
+#include "../aboo/scheduler.h"
 #include "../aboo/singleton.h"
 #include "../aboo/thread.h"
 

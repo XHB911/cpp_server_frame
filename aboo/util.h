@@ -14,8 +14,8 @@ namespace aboo {
 pid_t getThreadId();
 uint32_t getFiberId();
 
-void Backtrace(std::vector<std::string>& bt, int size, int skip = 1);
-std::string BacktraceToString(int size, int skip = 2, const std::string& prefix = "");
+void Backtrace(std::vector<std::string>& bt, int size = 64, int skip = 1);
+std::string BacktraceToString(int size = 64, int skip = 2, const std::string& prefix = "");
 
 }
 

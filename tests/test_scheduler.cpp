@@ -7,7 +7,7 @@ void test_fiber() {
 	static int s_count = 5;
 	sleep(1);
 	if (--s_count >= 0) {
-		aboo::Scheduler::GetThis()->schedule(&test_fiber, aboo:getThreadId());
+		aboo::Scheduler::GetThis()->schedule(&test_fiber, aboo::getThreadId());
 	}
 }
 

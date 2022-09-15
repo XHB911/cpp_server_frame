@@ -210,6 +210,19 @@ test_scheduler/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
 .PHONY : test_scheduler/fast
 
+#=============================================================================
+# Target rules for targets named test_iomanager
+
+# Build rule for target.
+test_iomanager: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_iomanager
+.PHONY : test_iomanager
+
+# fast build rule for target.
+test_iomanager/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
+.PHONY : test_iomanager/fast
+
 aboo/config.o: aboo/config.cpp.o
 .PHONY : aboo/config.o
 
@@ -257,6 +270,30 @@ aboo/fiber.s: aboo/fiber.cpp.s
 aboo/fiber.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/fiber.cpp.s
 .PHONY : aboo/fiber.cpp.s
+
+aboo/iomanager.o: aboo/iomanager.cpp.o
+.PHONY : aboo/iomanager.o
+
+# target to build an object file
+aboo/iomanager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/iomanager.cpp.o
+.PHONY : aboo/iomanager.cpp.o
+
+aboo/iomanager.i: aboo/iomanager.cpp.i
+.PHONY : aboo/iomanager.i
+
+# target to preprocess a source file
+aboo/iomanager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/iomanager.cpp.i
+.PHONY : aboo/iomanager.cpp.i
+
+aboo/iomanager.s: aboo/iomanager.cpp.s
+.PHONY : aboo/iomanager.s
+
+# target to generate assembly for a file
+aboo/iomanager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/iomanager.cpp.s
+.PHONY : aboo/iomanager.cpp.s
 
 aboo/log.o: aboo/log.cpp.o
 .PHONY : aboo/log.o
@@ -426,6 +463,30 @@ tests/test_fiber.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.s
 .PHONY : tests/test_fiber.cpp.s
 
+tests/test_iomanager.o: tests/test_iomanager.cpp.o
+.PHONY : tests/test_iomanager.o
+
+# target to build an object file
+tests/test_iomanager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cpp.o
+.PHONY : tests/test_iomanager.cpp.o
+
+tests/test_iomanager.i: tests/test_iomanager.cpp.i
+.PHONY : tests/test_iomanager.i
+
+# target to preprocess a source file
+tests/test_iomanager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cpp.i
+.PHONY : tests/test_iomanager.cpp.i
+
+tests/test_iomanager.s: tests/test_iomanager.cpp.s
+.PHONY : tests/test_iomanager.s
+
+# target to generate assembly for a file
+tests/test_iomanager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cpp.s
+.PHONY : tests/test_iomanager.cpp.s
+
 tests/test_scheduler.o: tests/test_scheduler.cpp.o
 .PHONY : tests/test_scheduler.o
 
@@ -510,6 +571,7 @@ help:
 	@echo "... test"
 	@echo "... test_config"
 	@echo "... test_fiber"
+	@echo "... test_iomanager"
 	@echo "... test_scheduler"
 	@echo "... test_thread"
 	@echo "... test_util"
@@ -519,6 +581,9 @@ help:
 	@echo "... aboo/fiber.o"
 	@echo "... aboo/fiber.i"
 	@echo "... aboo/fiber.s"
+	@echo "... aboo/iomanager.o"
+	@echo "... aboo/iomanager.i"
+	@echo "... aboo/iomanager.s"
 	@echo "... aboo/log.o"
 	@echo "... aboo/log.i"
 	@echo "... aboo/log.s"
@@ -540,6 +605,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_iomanager.o"
+	@echo "... tests/test_iomanager.i"
+	@echo "... tests/test_iomanager.s"
 	@echo "... tests/test_scheduler.o"
 	@echo "... tests/test_scheduler.i"
 	@echo "... tests/test_scheduler.s"

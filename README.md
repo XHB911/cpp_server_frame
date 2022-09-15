@@ -6,3 +6,6 @@
 
 - yaml-cpp库
 - boost库
+
+实体类的关系
+![UML类图关系](./resources/aboo-log_system-configuration_system.png)

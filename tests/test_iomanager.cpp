@@ -43,7 +43,18 @@ void test1() {
 	iom.schedule(&test_fiber);
 }
 
+void test_timer() {
+	aboo::IOManager iom(2);
+	aboo::Timer::ptr timer = iom.addTimer(1000, [&timer](){
+		static int i = 0;
+		ABOO_LOG_INFO(g_logger) << "hello timer i=" << i;
+		if (++i == 3) {
+			timer->cancel();
+		}
+	}, true);
+}
+
 int main(int argc, char** argv) {
-	test1();
+	test_timer();
 	return 0;
 }

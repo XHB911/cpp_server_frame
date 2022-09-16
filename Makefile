@@ -367,6 +367,30 @@ aboo/thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/thread.cpp.s
 .PHONY : aboo/thread.cpp.s
 
+aboo/timer.o: aboo/timer.cpp.o
+.PHONY : aboo/timer.o
+
+# target to build an object file
+aboo/timer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/timer.cpp.o
+.PHONY : aboo/timer.cpp.o
+
+aboo/timer.i: aboo/timer.cpp.i
+.PHONY : aboo/timer.i
+
+# target to preprocess a source file
+aboo/timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/timer.cpp.i
+.PHONY : aboo/timer.cpp.i
+
+aboo/timer.s: aboo/timer.cpp.s
+.PHONY : aboo/timer.s
+
+# target to generate assembly for a file
+aboo/timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/timer.cpp.s
+.PHONY : aboo/timer.cpp.s
+
 aboo/util.o: aboo/util.cpp.o
 .PHONY : aboo/util.o
 
@@ -593,6 +617,9 @@ help:
 	@echo "... aboo/thread.o"
 	@echo "... aboo/thread.i"
 	@echo "... aboo/thread.s"
+	@echo "... aboo/timer.o"
+	@echo "... aboo/timer.i"
+	@echo "... aboo/timer.s"
 	@echo "... aboo/util.o"
 	@echo "... aboo/util.i"
 	@echo "... aboo/util.s"

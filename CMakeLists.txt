@@ -15,6 +15,7 @@ set(LIB_SRC
 	aboo/log.cpp
 	aboo/thread.cpp
 	aboo/scheduler.cpp
+	aboo/timer.cpp
 	aboo/util.cpp
 	)
 

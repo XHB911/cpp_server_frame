@@ -223,6 +223,19 @@ test_iomanager/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
 .PHONY : test_iomanager/fast
 
+#=============================================================================
+# Target rules for targets named test_hook
+
+# Build rule for target.
+test_hook: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_hook
+.PHONY : test_hook
+
+# fast build rule for target.
+test_hook/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
+.PHONY : test_hook/fast
+
 aboo/config.o: aboo/config.cpp.o
 .PHONY : aboo/config.o
 
@@ -247,6 +260,30 @@ aboo/config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/config.cpp.s
 .PHONY : aboo/config.cpp.s
 
+aboo/fd_manager.o: aboo/fd_manager.cpp.o
+.PHONY : aboo/fd_manager.o
+
+# target to build an object file
+aboo/fd_manager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/fd_manager.cpp.o
+.PHONY : aboo/fd_manager.cpp.o
+
+aboo/fd_manager.i: aboo/fd_manager.cpp.i
+.PHONY : aboo/fd_manager.i
+
+# target to preprocess a source file
+aboo/fd_manager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/fd_manager.cpp.i
+.PHONY : aboo/fd_manager.cpp.i
+
+aboo/fd_manager.s: aboo/fd_manager.cpp.s
+.PHONY : aboo/fd_manager.s
+
+# target to generate assembly for a file
+aboo/fd_manager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/fd_manager.cpp.s
+.PHONY : aboo/fd_manager.cpp.s
+
 aboo/fiber.o: aboo/fiber.cpp.o
 .PHONY : aboo/fiber.o
 
@@ -270,6 +307,30 @@ aboo/fiber.s: aboo/fiber.cpp.s
 aboo/fiber.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/fiber.cpp.s
 .PHONY : aboo/fiber.cpp.s
+
+aboo/hook.o: aboo/hook.cpp.o
+.PHONY : aboo/hook.o
+
+# target to build an object file
+aboo/hook.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/hook.cpp.o
+.PHONY : aboo/hook.cpp.o
+
+aboo/hook.i: aboo/hook.cpp.i
+.PHONY : aboo/hook.i
+
+# target to preprocess a source file
+aboo/hook.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/hook.cpp.i
+.PHONY : aboo/hook.cpp.i
+
+aboo/hook.s: aboo/hook.cpp.s
+.PHONY : aboo/hook.s
+
+# target to generate assembly for a file
+aboo/hook.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/hook.cpp.s
+.PHONY : aboo/hook.cpp.s
 
 aboo/iomanager.o: aboo/iomanager.cpp.o
 .PHONY : aboo/iomanager.o
@@ -487,6 +548,30 @@ tests/test_fiber.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cpp.s
 .PHONY : tests/test_fiber.cpp.s
 
+tests/test_hook.o: tests/test_hook.cpp.o
+.PHONY : tests/test_hook.o
+
+# target to build an object file
+tests/test_hook.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cpp.o
+.PHONY : tests/test_hook.cpp.o
+
+tests/test_hook.i: tests/test_hook.cpp.i
+.PHONY : tests/test_hook.i
+
+# target to preprocess a source file
+tests/test_hook.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cpp.i
+.PHONY : tests/test_hook.cpp.i
+
+tests/test_hook.s: tests/test_hook.cpp.s
+.PHONY : tests/test_hook.s
+
+# target to generate assembly for a file
+tests/test_hook.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cpp.s
+.PHONY : tests/test_hook.cpp.s
+
 tests/test_iomanager.o: tests/test_iomanager.cpp.o
 .PHONY : tests/test_iomanager.o
 
@@ -595,6 +680,7 @@ help:
 	@echo "... test"
 	@echo "... test_config"
 	@echo "... test_fiber"
+	@echo "... test_hook"
 	@echo "... test_iomanager"
 	@echo "... test_scheduler"
 	@echo "... test_thread"
@@ -602,9 +688,15 @@ help:
 	@echo "... aboo/config.o"
 	@echo "... aboo/config.i"
 	@echo "... aboo/config.s"
+	@echo "... aboo/fd_manager.o"
+	@echo "... aboo/fd_manager.i"
+	@echo "... aboo/fd_manager.s"
 	@echo "... aboo/fiber.o"
 	@echo "... aboo/fiber.i"
 	@echo "... aboo/fiber.s"
+	@echo "... aboo/hook.o"
+	@echo "... aboo/hook.i"
+	@echo "... aboo/hook.s"
 	@echo "... aboo/iomanager.o"
 	@echo "... aboo/iomanager.i"
 	@echo "... aboo/iomanager.s"
@@ -632,6 +724,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_hook.o"
+	@echo "... tests/test_hook.i"
+	@echo "... tests/test_hook.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"

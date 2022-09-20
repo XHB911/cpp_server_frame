@@ -10,9 +10,11 @@ link_directories(/usr/local/lib)
 
 set(LIB_SRC
 	aboo/config.cpp
+	aboo/fd_manager.cpp
 	aboo/fiber.cpp
 	aboo/iomanager.cpp
 	aboo/log.cpp
+	aboo/hook.cpp
 	aboo/thread.cpp
 	aboo/scheduler.cpp
 	aboo/timer.cpp
@@ -26,6 +28,7 @@ add_library(aboo SHARED ${LIB_SRC})
 
 set(LIB_LIB
 	aboo
+	dl
 	pthread
 	-lyaml-cpp
 	)
@@ -64,6 +67,11 @@ add_executable(test_iomanager tests/test_iomanager.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_iomanager aboo)
 target_link_libraries(test_iomanager ${LIB_LIB})
+
+add_executable(test_hook tests/test_hook.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_hook aboo)
+target_link_libraries(test_hook ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

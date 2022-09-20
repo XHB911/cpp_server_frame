@@ -1,6 +1,7 @@
 #include "scheduler.h"
 #include "log.h"
 #include "macro.h"
+#include "hook.h"
 
 namespace aboo {
 static aboo::Logger::ptr g_logger = ABOO_LOG_NAME("system");
@@ -129,6 +130,8 @@ void Scheduler::setThis() {
 }
 
 void Scheduler::run() {
+	ABOO_LOG_INFO(g_logger) << "run";
+	set_hook_enable(true);
 	setThis();
 	if (aboo::getThreadId() != m_rootThread) {
 		t_fiber = Fiber::GetThis().get();

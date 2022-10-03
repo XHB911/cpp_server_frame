@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-de
 link_directories(/usr/local/lib)
 
 set(LIB_SRC
+	aboo/address.cpp
 	aboo/config.cpp
 	aboo/fd_manager.cpp
 	aboo/fiber.cpp
@@ -72,6 +73,11 @@ add_executable(test_hook tests/test_hook.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_hook aboo)
 target_link_libraries(test_hook ${LIB_LIB})
+
+add_executable(test_address tests/test_address.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_address aboo)
+target_link_libraries(test_address ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

@@ -249,6 +249,19 @@ test_address/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/build
 .PHONY : test_address/fast
 
+#=============================================================================
+# Target rules for targets named test_socket
+
+# Build rule for target.
+test_socket: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_socket
+.PHONY : test_socket
+
+# fast build rule for target.
+test_socket/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/build
+.PHONY : test_socket/fast
+
 aboo/address.o: aboo/address.cpp.o
 .PHONY : aboo/address.o
 
@@ -440,6 +453,30 @@ aboo/scheduler.s: aboo/scheduler.cpp.s
 aboo/scheduler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/scheduler.cpp.s
 .PHONY : aboo/scheduler.cpp.s
+
+aboo/socket.o: aboo/socket.cpp.o
+.PHONY : aboo/socket.o
+
+# target to build an object file
+aboo/socket.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/socket.cpp.o
+.PHONY : aboo/socket.cpp.o
+
+aboo/socket.i: aboo/socket.cpp.i
+.PHONY : aboo/socket.i
+
+# target to preprocess a source file
+aboo/socket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/socket.cpp.i
+.PHONY : aboo/socket.cpp.i
+
+aboo/socket.s: aboo/socket.cpp.s
+.PHONY : aboo/socket.s
+
+# target to generate assembly for a file
+aboo/socket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/socket.cpp.s
+.PHONY : aboo/socket.cpp.s
 
 aboo/thread.o: aboo/thread.cpp.o
 .PHONY : aboo/thread.o
@@ -681,6 +718,30 @@ tests/test_scheduler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cpp.s
 .PHONY : tests/test_scheduler.cpp.s
 
+tests/test_socket.o: tests/test_socket.cpp.o
+.PHONY : tests/test_socket.o
+
+# target to build an object file
+tests/test_socket.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cpp.o
+.PHONY : tests/test_socket.cpp.o
+
+tests/test_socket.i: tests/test_socket.cpp.i
+.PHONY : tests/test_socket.i
+
+# target to preprocess a source file
+tests/test_socket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cpp.i
+.PHONY : tests/test_socket.cpp.i
+
+tests/test_socket.s: tests/test_socket.cpp.s
+.PHONY : tests/test_socket.s
+
+# target to generate assembly for a file
+tests/test_socket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cpp.s
+.PHONY : tests/test_socket.cpp.s
+
 tests/test_thread.o: tests/test_thread.cpp.o
 .PHONY : tests/test_thread.o
 
@@ -745,6 +806,7 @@ help:
 	@echo "... test_hook"
 	@echo "... test_iomanager"
 	@echo "... test_scheduler"
+	@echo "... test_socket"
 	@echo "... test_thread"
 	@echo "... test_util"
 	@echo "... aboo/address.o"
@@ -771,6 +833,9 @@ help:
 	@echo "... aboo/scheduler.o"
 	@echo "... aboo/scheduler.i"
 	@echo "... aboo/scheduler.s"
+	@echo "... aboo/socket.o"
+	@echo "... aboo/socket.i"
+	@echo "... aboo/socket.s"
 	@echo "... aboo/thread.o"
 	@echo "... aboo/thread.i"
 	@echo "... aboo/thread.s"
@@ -801,6 +866,9 @@ help:
 	@echo "... tests/test_scheduler.o"
 	@echo "... tests/test_scheduler.i"
 	@echo "... tests/test_scheduler.s"
+	@echo "... tests/test_socket.o"
+	@echo "... tests/test_socket.i"
+	@echo "... tests/test_socket.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"

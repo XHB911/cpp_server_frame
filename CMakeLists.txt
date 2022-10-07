@@ -4,7 +4,7 @@ project(aboo)
 #include (cmake/utils.cmake) # 遗留问题
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function")
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function")
 
 link_directories(/usr/local/lib)
 
@@ -18,6 +18,7 @@ set(LIB_SRC
 	aboo/hook.cpp
 	aboo/thread.cpp
 	aboo/scheduler.cpp
+	aboo/socket.cpp
 	aboo/timer.cpp
 	aboo/util.cpp
 	)
@@ -78,6 +79,11 @@ add_executable(test_address tests/test_address.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_address aboo)
 target_link_libraries(test_address ${LIB_LIB})
+
+add_executable(test_socket tests/test_socket.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_socket aboo)
+target_link_libraries(test_socket ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

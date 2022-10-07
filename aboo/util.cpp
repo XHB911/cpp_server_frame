@@ -7,7 +7,7 @@
 
 namespace aboo {
 
-aboo::Logger::ptr g_logger = ABOO_LOG_NAME("system");
+static aboo::Logger::ptr g_logger = ABOO_LOG_NAME("system");
 
 pid_t getThreadId() {
 	return syscall(SYS_gettid);

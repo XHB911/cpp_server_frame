@@ -84,7 +84,7 @@ static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name, uint32_t 
 		return fun(fd, std::forward<Args>(args)...);
 	}
 
-	ABOO_LOG_DEBUG(g_logger) << "do_io<" << hook_fun_name << ">";
+	//ABOO_LOG_DEBUG(g_logger) << "do_io<" << hook_fun_name << ">";
 
 	aboo::FdCtx::ptr ctx = aboo::FdMgr::getInstance()->get(fd);
 	if (!ctx) {

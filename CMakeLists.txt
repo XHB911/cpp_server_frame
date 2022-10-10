@@ -10,6 +10,7 @@ link_directories(/usr/local/lib)
 
 set(LIB_SRC
 	aboo/address.cpp
+	aboo/bytearray.cpp
 	aboo/config.cpp
 	aboo/fd_manager.cpp
 	aboo/fiber.cpp
@@ -84,6 +85,11 @@ add_executable(test_socket tests/test_socket.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_socket aboo)
 target_link_libraries(test_socket ${LIB_LIB})
+
+add_executable(test_bytearray tests/test_bytearray.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_bytearray aboo)
+target_link_libraries(test_bytearray ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

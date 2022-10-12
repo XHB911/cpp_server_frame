@@ -275,6 +275,32 @@ test_bytearray/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_bytearray.dir/build.make CMakeFiles/test_bytearray.dir/build
 .PHONY : test_bytearray/fast
 
+#=============================================================================
+# Target rules for targets named test_http
+
+# Build rule for target.
+test_http: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_http
+.PHONY : test_http
+
+# fast build rule for target.
+test_http/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/build
+.PHONY : test_http/fast
+
+#=============================================================================
+# Target rules for targets named test_http_parser
+
+# Build rule for target.
+test_http_parser: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_http_parser
+.PHONY : test_http_parser
+
+# fast build rule for target.
+test_http_parser/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/build
+.PHONY : test_http_parser/fast
+
 aboo/address.o: aboo/address.cpp.o
 .PHONY : aboo/address.o
 
@@ -418,6 +444,102 @@ aboo/hook.s: aboo/hook.cpp.s
 aboo/hook.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/hook.cpp.s
 .PHONY : aboo/hook.cpp.s
+
+aboo/http/http.o: aboo/http/http.cpp.o
+.PHONY : aboo/http/http.o
+
+# target to build an object file
+aboo/http/http.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http.cpp.o
+.PHONY : aboo/http/http.cpp.o
+
+aboo/http/http.i: aboo/http/http.cpp.i
+.PHONY : aboo/http/http.i
+
+# target to preprocess a source file
+aboo/http/http.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http.cpp.i
+.PHONY : aboo/http/http.cpp.i
+
+aboo/http/http.s: aboo/http/http.cpp.s
+.PHONY : aboo/http/http.s
+
+# target to generate assembly for a file
+aboo/http/http.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http.cpp.s
+.PHONY : aboo/http/http.cpp.s
+
+aboo/http/http11_parser.rl.o: aboo/http/http11_parser.rl.cpp.o
+.PHONY : aboo/http/http11_parser.rl.o
+
+# target to build an object file
+aboo/http/http11_parser.rl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http11_parser.rl.cpp.o
+.PHONY : aboo/http/http11_parser.rl.cpp.o
+
+aboo/http/http11_parser.rl.i: aboo/http/http11_parser.rl.cpp.i
+.PHONY : aboo/http/http11_parser.rl.i
+
+# target to preprocess a source file
+aboo/http/http11_parser.rl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http11_parser.rl.cpp.i
+.PHONY : aboo/http/http11_parser.rl.cpp.i
+
+aboo/http/http11_parser.rl.s: aboo/http/http11_parser.rl.cpp.s
+.PHONY : aboo/http/http11_parser.rl.s
+
+# target to generate assembly for a file
+aboo/http/http11_parser.rl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http11_parser.rl.cpp.s
+.PHONY : aboo/http/http11_parser.rl.cpp.s
+
+aboo/http/http_parser.o: aboo/http/http_parser.cpp.o
+.PHONY : aboo/http/http_parser.o
+
+# target to build an object file
+aboo/http/http_parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http_parser.cpp.o
+.PHONY : aboo/http/http_parser.cpp.o
+
+aboo/http/http_parser.i: aboo/http/http_parser.cpp.i
+.PHONY : aboo/http/http_parser.i
+
+# target to preprocess a source file
+aboo/http/http_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http_parser.cpp.i
+.PHONY : aboo/http/http_parser.cpp.i
+
+aboo/http/http_parser.s: aboo/http/http_parser.cpp.s
+.PHONY : aboo/http/http_parser.s
+
+# target to generate assembly for a file
+aboo/http/http_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/http_parser.cpp.s
+.PHONY : aboo/http/http_parser.cpp.s
+
+aboo/http/httpclient_parser.rl.o: aboo/http/httpclient_parser.rl.cpp.o
+.PHONY : aboo/http/httpclient_parser.rl.o
+
+# target to build an object file
+aboo/http/httpclient_parser.rl.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/httpclient_parser.rl.cpp.o
+.PHONY : aboo/http/httpclient_parser.rl.cpp.o
+
+aboo/http/httpclient_parser.rl.i: aboo/http/httpclient_parser.rl.cpp.i
+.PHONY : aboo/http/httpclient_parser.rl.i
+
+# target to preprocess a source file
+aboo/http/httpclient_parser.rl.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/httpclient_parser.rl.cpp.i
+.PHONY : aboo/http/httpclient_parser.rl.cpp.i
+
+aboo/http/httpclient_parser.rl.s: aboo/http/httpclient_parser.rl.cpp.s
+.PHONY : aboo/http/httpclient_parser.rl.s
+
+# target to generate assembly for a file
+aboo/http/httpclient_parser.rl.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/http/httpclient_parser.rl.cpp.s
+.PHONY : aboo/http/httpclient_parser.rl.cpp.s
 
 aboo/iomanager.o: aboo/iomanager.cpp.o
 .PHONY : aboo/iomanager.o
@@ -731,6 +853,54 @@ tests/test_hook.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cpp.s
 .PHONY : tests/test_hook.cpp.s
 
+tests/test_http.o: tests/test_http.cpp.o
+.PHONY : tests/test_http.o
+
+# target to build an object file
+tests/test_http.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cpp.o
+.PHONY : tests/test_http.cpp.o
+
+tests/test_http.i: tests/test_http.cpp.i
+.PHONY : tests/test_http.i
+
+# target to preprocess a source file
+tests/test_http.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cpp.i
+.PHONY : tests/test_http.cpp.i
+
+tests/test_http.s: tests/test_http.cpp.s
+.PHONY : tests/test_http.s
+
+# target to generate assembly for a file
+tests/test_http.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http.dir/build.make CMakeFiles/test_http.dir/tests/test_http.cpp.s
+.PHONY : tests/test_http.cpp.s
+
+tests/test_http_parser.o: tests/test_http_parser.cpp.o
+.PHONY : tests/test_http_parser.o
+
+# target to build an object file
+tests/test_http_parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cpp.o
+.PHONY : tests/test_http_parser.cpp.o
+
+tests/test_http_parser.i: tests/test_http_parser.cpp.i
+.PHONY : tests/test_http_parser.i
+
+# target to preprocess a source file
+tests/test_http_parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cpp.i
+.PHONY : tests/test_http_parser.cpp.i
+
+tests/test_http_parser.s: tests/test_http_parser.cpp.s
+.PHONY : tests/test_http_parser.s
+
+# target to generate assembly for a file
+tests/test_http_parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/tests/test_http_parser.cpp.s
+.PHONY : tests/test_http_parser.cpp.s
+
 tests/test_iomanager.o: tests/test_iomanager.cpp.o
 .PHONY : tests/test_iomanager.o
 
@@ -866,6 +1036,8 @@ help:
 	@echo "... test_config"
 	@echo "... test_fiber"
 	@echo "... test_hook"
+	@echo "... test_http"
+	@echo "... test_http_parser"
 	@echo "... test_iomanager"
 	@echo "... test_scheduler"
 	@echo "... test_socket"
@@ -889,6 +1061,18 @@ help:
 	@echo "... aboo/hook.o"
 	@echo "... aboo/hook.i"
 	@echo "... aboo/hook.s"
+	@echo "... aboo/http/http.o"
+	@echo "... aboo/http/http.i"
+	@echo "... aboo/http/http.s"
+	@echo "... aboo/http/http11_parser.rl.o"
+	@echo "... aboo/http/http11_parser.rl.i"
+	@echo "... aboo/http/http11_parser.rl.s"
+	@echo "... aboo/http/http_parser.o"
+	@echo "... aboo/http/http_parser.i"
+	@echo "... aboo/http/http_parser.s"
+	@echo "... aboo/http/httpclient_parser.rl.o"
+	@echo "... aboo/http/httpclient_parser.rl.i"
+	@echo "... aboo/http/httpclient_parser.rl.s"
 	@echo "... aboo/iomanager.o"
 	@echo "... aboo/iomanager.i"
 	@echo "... aboo/iomanager.s"
@@ -928,6 +1112,12 @@ help:
 	@echo "... tests/test_hook.o"
 	@echo "... tests/test_hook.i"
 	@echo "... tests/test_hook.s"
+	@echo "... tests/test_http.o"
+	@echo "... tests/test_http.i"
+	@echo "... tests/test_http.s"
+	@echo "... tests/test_http_parser.o"
+	@echo "... tests/test_http_parser.i"
+	@echo "... tests/test_http_parser.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"

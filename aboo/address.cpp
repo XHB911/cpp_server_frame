@@ -75,7 +75,7 @@ bool Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
 		next = next->ai_next;
 	}
 	freeaddrinfo(results);
-	return true;
+	return !result.empty();
 }
 
 Address::ptr Address::LookupAny(const std::string& host, int family, int type, int protocol) {
@@ -170,7 +170,7 @@ int Address::getFamily() const {
 	return getAddr()->sa_family;
 }
 
-std::string Address::toString() {
+std::string Address::toString() const {
 	std::stringstream ss;
 	insert(ss);
 	return ss.str();
@@ -475,6 +475,10 @@ socklen_t UnknownAddress::getAddrLen() const {
 std::ostream& UnknownAddress::insert(std::ostream& os) const {
 	os << "[UnknownAddress family=" << m_addr.sa_family << "]";
 	return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const Address& addr) {
+	return addr.insert(os);
 }
 
 }

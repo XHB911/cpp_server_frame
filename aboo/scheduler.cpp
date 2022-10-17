@@ -55,7 +55,7 @@ void Scheduler::start() {
 	ABOO_ASSERT(m_threads.empty());
 
 	m_threads.resize(m_threadCount);
-	for (size_t i = 0; i < m_threadCount; i++) {
+	for (size_t i = 0; i < m_threadCount; ++i) {
 		m_threads[i].reset(new Thread(std::bind(&Scheduler::run, this), m_name + "_" + std::to_string(i)));
 		m_threadIds.push_back(m_threads[i]->getId());
 	}
@@ -162,11 +162,12 @@ void Scheduler::run() {
 				}
 
 				ft = *it;
-				m_fibers.erase(it);
+				m_fibers.erase(it++);
 				++m_activeThreadCount;
 				is_active = true;
 				break;
 			}
+			tickle_me |= it != m_fibers.end();
 		}
 
 		if (tickle_me) {
@@ -230,7 +231,7 @@ bool Scheduler::stopping() {
 }
 
 void Scheduler::idle() {
-	ABOO_LOG_INFO(g_logger) << "idler";
+	ABOO_LOG_INFO(g_logger) << "idle";
 	while(!stopping()) {
 		aboo::Fiber::YieldToHold();
 	}

@@ -18,12 +18,15 @@ set(LIB_SRC
 	aboo/http/http_parser.cpp
 	aboo/http/http11_parser.rl.cpp
 	aboo/http/httpclient_parser.rl.cpp
+	aboo/tcp_server.cpp
 	aboo/iomanager.cpp
 	aboo/log.cpp
 	aboo/hook.cpp
 	aboo/thread.cpp
 	aboo/scheduler.cpp
 	aboo/socket.cpp
+	aboo/stream.cpp
+	aboo/socket_stream.cpp
 	aboo/timer.cpp
 	aboo/util.cpp
 	)
@@ -104,6 +107,16 @@ add_executable(test_http_parser tests/test_http_parser.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_http_parser aboo)
 target_link_libraries(test_http_parser ${LIB_LIB})
+
+add_executable(test_tcp_server tests/test_tcp_server.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_tcp_server aboo)
+target_link_libraries(test_tcp_server ${LIB_LIB})
+
+add_executable(echo_server examples/echo_server.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(echo_server aboo)
+target_link_libraries(echo_server ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

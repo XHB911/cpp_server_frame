@@ -80,7 +80,7 @@ struct timer_info {
 
 template<typename OriginFun, typename ... Args>
 static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name, uint32_t event, int timeout_so, Args&&... args) {
-	if (aboo::t_hook_enable) {
+	if (!aboo::t_hook_enable) {
 		return fun(fd, std::forward<Args>(args)...);
 	}
 
@@ -186,9 +186,11 @@ int nanosleep(const struct timespec *req, struct timespec *rem) {
 	int timeout_ms = req->tv_sec * 1000 + req->tv_nsec / 1000 / 1000;
 	aboo::Fiber::ptr fiber = aboo::Fiber::GetThis();
 	aboo::IOManager* iom = aboo::IOManager::GetThis();
-	iom->addTimer(timeout_ms / 1000, [iom, fiber](){
-		iom->schedule(fiber);
-	});
+	iom->addTimer(timeout_ms, std::bind(
+				(void(aboo::Scheduler::*)(aboo::Fiber::ptr, int thread))&aboo::IOManager::schedule
+				, iom
+				, fiber
+				, -1));
 	aboo::Fiber::YieldToHold();
 	return 0;
 }
@@ -372,7 +374,7 @@ int fcntl(int fd, int cmd, .../* arg */) {
 					return arg;
 				}
 				if (ctx->getUserNonblock()) {
-					return arg || O_NONBLOCK;
+					return arg | O_NONBLOCK;
 				} else {
 					return arg & ~O_NONBLOCK;
 				}

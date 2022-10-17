@@ -6,12 +6,19 @@
 
 namespace aboo {
 
-FdCtx::FdCtx(int fd) : m_isInit(false), m_isSocket(false), m_sysNonblock(false), m_userNonblock(false), m_isClosed(false), m_fd(false), m_recvTimeout(-1), m_sendTimeout(-1) {
+FdCtx::FdCtx(int fd)
+	: m_isInit(false)
+	, m_isSocket(false)
+	, m_sysNonblock(false)
+	, m_userNonblock(false)
+	, m_isClosed(false)
+	, m_fd(fd)
+	, m_recvTimeout(-1)
+	, m_sendTimeout(-1) {
 	init();
 }
 
 FdCtx::~FdCtx() {
-
 }
 
 bool FdCtx::init() {
@@ -65,6 +72,7 @@ FdManager::FdManager() {
 }
 
 FdCtx::ptr FdManager::get(int fd, bool auto_create) {
+	if (fd == -1) return nullptr;
 	RWMutexType::ReadLock lock(m_mutex);
 	if ((int)m_datas.size() <= fd) {
 		if (auto_create == false) {
@@ -79,8 +87,11 @@ FdCtx::ptr FdManager::get(int fd, bool auto_create) {
 
 	RWMutexType::WriteLock lock2(m_mutex);
 	FdCtx::ptr ctx(new FdCtx(fd));
+	if (fd >= (int)m_datas.size()) {
+		m_datas.resize(fd * 1.5);
+	}
 	m_datas[fd] = ctx;
-	return ctx;	
+	return ctx;
 }
 
 void FdManager::del(int fd) {

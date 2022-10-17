@@ -373,9 +373,12 @@ int Socket::getError() {
 
 std::ostream& Socket::dump(std::ostream& os) const {
 	os << "[Socket sock=" << m_sock
-	   << " is_connected=" << m_isConnected
-	   << " family=" << m_family
-	   << " type=" << m_type
+	   << " is_connected=" << m_isConnected;
+	if (m_family == IPv4) os << " family=IPv4";
+	else if (m_family == IPv6) os << " family=IPv6";
+	else if (m_family == UNIX) os << " family=UNIX";
+	else os << " family=Unknown";
+	os << " type=" << m_type
 	   << " protocol=" << m_protocol;
 	if (m_localAddress) {
 		os << " localAddress=" << m_localAddress->toString();
@@ -418,6 +421,10 @@ void Socket::newSock() {
 	} else {
 		ABOO_LOG_ERROR(g_logger) << "socket(" << m_family << ", " << m_type << ", " << m_protocol << ") errno=" << errno << " strerr=" << strerror(errno);
 	}
+}
+
+std::ostream& operator<<(std::ostream& os, const Socket& socket) {
+	return socket.dump(os);
 }
 
 }

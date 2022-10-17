@@ -44,7 +44,7 @@ public:
 			MutexType::Lock lock(m_mutex);
 			while (begin != end) {
 				need_tickle = scheduleNoLock(&*begin, -1) || need_tickle;
-				begin ++;
+				++ begin;
 			}
 		}
 		if (need_tickle) {
@@ -62,10 +62,17 @@ private:
 	template<class FiberOrCb>
 	bool scheduleNoLock(FiberOrCb fc, int thread) {
 		bool need_tickle = m_fibers.empty();
+		//printf("\ninto scheduleNoLock threadId=%d\n", thread);
 		FiberAndThread ft(fc, thread);
 		if (ft.fiber || ft.cb) {
+			//if (ft.fiber)
+			//	printf("\nm_fibers.push_back ft.fiber\n");
+			//if (ft.cb)
+			//	printf("\nm_fibers.push_back ft.cb\n");
 			m_fibers.push_back(ft);
 		}
+		//if (need_tickle) printf("\nneed_tickle is true\n");
+		//else printf("\nneed_tickle is false\n");
 		return need_tickle;
 	}
 

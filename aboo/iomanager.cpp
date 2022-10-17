@@ -23,7 +23,7 @@ IOManager::FdContext::EventContext& IOManager::FdContext::getContext(IOManager::
 	}
 }
 
-void IOManager::FdContext::resetContext(IOManager::FdContext::EventContext& ctx) {
+void IOManager::FdContext::resetContext(EventContext& ctx) {
 	ctx.scheduler = nullptr;
 	ctx.fiber.reset();
 	ctx.cb = nullptr;
@@ -239,7 +239,7 @@ IOManager* IOManager::GetThis() {
 }
 
 void IOManager::tickle() {
-	if (hasIdleThreads()) return;
+	if (!hasIdleThreads()) return;
 	int rt = write(m_tickleFds[1], "T", 1);
 	ABOO_ASSERT(rt == 1);
 }
@@ -255,7 +255,9 @@ bool IOManager::stopping() {
 }
 
 void IOManager::idle() {
-	epoll_event* events = new epoll_event[64]();
+	ABOO_LOG_DEBUG(g_logger) << "idle";
+	const uint64_t MAX_EVENTS = 256;
+	epoll_event* events = new epoll_event[MAX_EVENTS]();
 	std::shared_ptr<epoll_event> shared_events(events, [](epoll_event* ptr){
 		delete[] ptr;
 	});
@@ -270,12 +272,12 @@ void IOManager::idle() {
 		int rt = 0;
 		do {
 			static const int MAX_TIMEOUT = 3000;
-			if (next_timeout != 0ull) {
+			if (next_timeout != ~0ull) {
 				next_timeout = (int)next_timeout > MAX_TIMEOUT ? MAX_TIMEOUT : next_timeout;
 			} else {
 				next_timeout = MAX_TIMEOUT;
 			}
-			rt = epoll_wait(m_epfd, events, 64, (int)next_timeout);
+			rt = epoll_wait(m_epfd, events, MAX_EVENTS, (int)next_timeout);
 			if (rt < 0 && errno == EINTR) {
 
 			} else {
@@ -294,15 +296,15 @@ void IOManager::idle() {
 		for (int i = 0; i < rt; ++i) {
 			epoll_event& event = events[i];
 			if (event.data.fd == m_tickleFds[0]) {
-				uint8_t dummy;
-				while (read(m_tickleFds[0], &dummy, 1) == 1);
+				uint8_t dummy[256];
+				while (read(m_tickleFds[0], dummy, sizeof(dummy)) > 0);
 				continue;
 			}
 
 			FdContext* fd_ctx = (FdContext*)event.data.ptr;
 			FdContext::MutexType::Lock lock(fd_ctx->mutex);
 			if (event.events & (EPOLLERR | EPOLLHUP)) {
-				event.events |= EPOLLIN | EPOLLOUT;
+				event.events |= (EPOLLIN | EPOLLOUT) & fd_ctx->events;
 			}
 			int real_events = NONE;
 			if (event.events & EPOLLIN) {

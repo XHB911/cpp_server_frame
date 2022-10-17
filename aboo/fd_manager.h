@@ -21,7 +21,8 @@ public:
 	bool isInit() const { return m_isInit; }
 	bool isSocket() const { return m_isSocket; }
 	bool isClosed() const { return m_isClosed; }
-	bool close();
+
+	int getFd() { return m_fd; }
 
 	void setUserNonblock(bool v) { m_userNonblock = v; }
 	bool getUserNonblock() { return m_userNonblock; }
@@ -37,7 +38,7 @@ private:
 	bool m_sysNonblock: 1;
 	bool m_userNonblock: 1;
 	bool m_isClosed: 1;
-	bool m_fd;
+	int m_fd;
 	uint64_t m_recvTimeout;
 	uint64_t m_sendTimeout;
 };

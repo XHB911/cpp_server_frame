@@ -301,6 +301,32 @@ test_http_parser/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_http_parser.dir/build.make CMakeFiles/test_http_parser.dir/build
 .PHONY : test_http_parser/fast
 
+#=============================================================================
+# Target rules for targets named test_tcp_server
+
+# Build rule for target.
+test_tcp_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_tcp_server
+.PHONY : test_tcp_server
+
+# fast build rule for target.
+test_tcp_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/build
+.PHONY : test_tcp_server/fast
+
+#=============================================================================
+# Target rules for targets named echo_server
+
+# Build rule for target.
+echo_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 echo_server
+.PHONY : echo_server
+
+# fast build rule for target.
+echo_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/build
+.PHONY : echo_server/fast
+
 aboo/address.o: aboo/address.cpp.o
 .PHONY : aboo/address.o
 
@@ -637,6 +663,78 @@ aboo/socket.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/socket.cpp.s
 .PHONY : aboo/socket.cpp.s
 
+aboo/socket_stream.o: aboo/socket_stream.cpp.o
+.PHONY : aboo/socket_stream.o
+
+# target to build an object file
+aboo/socket_stream.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/socket_stream.cpp.o
+.PHONY : aboo/socket_stream.cpp.o
+
+aboo/socket_stream.i: aboo/socket_stream.cpp.i
+.PHONY : aboo/socket_stream.i
+
+# target to preprocess a source file
+aboo/socket_stream.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/socket_stream.cpp.i
+.PHONY : aboo/socket_stream.cpp.i
+
+aboo/socket_stream.s: aboo/socket_stream.cpp.s
+.PHONY : aboo/socket_stream.s
+
+# target to generate assembly for a file
+aboo/socket_stream.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/socket_stream.cpp.s
+.PHONY : aboo/socket_stream.cpp.s
+
+aboo/stream.o: aboo/stream.cpp.o
+.PHONY : aboo/stream.o
+
+# target to build an object file
+aboo/stream.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/stream.cpp.o
+.PHONY : aboo/stream.cpp.o
+
+aboo/stream.i: aboo/stream.cpp.i
+.PHONY : aboo/stream.i
+
+# target to preprocess a source file
+aboo/stream.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/stream.cpp.i
+.PHONY : aboo/stream.cpp.i
+
+aboo/stream.s: aboo/stream.cpp.s
+.PHONY : aboo/stream.s
+
+# target to generate assembly for a file
+aboo/stream.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/stream.cpp.s
+.PHONY : aboo/stream.cpp.s
+
+aboo/tcp_server.o: aboo/tcp_server.cpp.o
+.PHONY : aboo/tcp_server.o
+
+# target to build an object file
+aboo/tcp_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/tcp_server.cpp.o
+.PHONY : aboo/tcp_server.cpp.o
+
+aboo/tcp_server.i: aboo/tcp_server.cpp.i
+.PHONY : aboo/tcp_server.i
+
+# target to preprocess a source file
+aboo/tcp_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/tcp_server.cpp.i
+.PHONY : aboo/tcp_server.cpp.i
+
+aboo/tcp_server.s: aboo/tcp_server.cpp.s
+.PHONY : aboo/tcp_server.s
+
+# target to generate assembly for a file
+aboo/tcp_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/tcp_server.cpp.s
+.PHONY : aboo/tcp_server.cpp.s
+
 aboo/thread.o: aboo/thread.cpp.o
 .PHONY : aboo/thread.o
 
@@ -708,6 +806,30 @@ aboo/util.s: aboo/util.cpp.s
 aboo/util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/util.cpp.s
 .PHONY : aboo/util.cpp.s
+
+examples/echo_server.o: examples/echo_server.cpp.o
+.PHONY : examples/echo_server.o
+
+# target to build an object file
+examples/echo_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cpp.o
+.PHONY : examples/echo_server.cpp.o
+
+examples/echo_server.i: examples/echo_server.cpp.i
+.PHONY : examples/echo_server.i
+
+# target to preprocess a source file
+examples/echo_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cpp.i
+.PHONY : examples/echo_server.cpp.i
+
+examples/echo_server.s: examples/echo_server.cpp.s
+.PHONY : examples/echo_server.s
+
+# target to generate assembly for a file
+examples/echo_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cpp.s
+.PHONY : examples/echo_server.cpp.s
 
 tests/test.o: tests/test.cpp.o
 .PHONY : tests/test.o
@@ -973,6 +1095,30 @@ tests/test_socket.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_socket.dir/build.make CMakeFiles/test_socket.dir/tests/test_socket.cpp.s
 .PHONY : tests/test_socket.cpp.s
 
+tests/test_tcp_server.o: tests/test_tcp_server.cpp.o
+.PHONY : tests/test_tcp_server.o
+
+# target to build an object file
+tests/test_tcp_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cpp.o
+.PHONY : tests/test_tcp_server.cpp.o
+
+tests/test_tcp_server.i: tests/test_tcp_server.cpp.i
+.PHONY : tests/test_tcp_server.i
+
+# target to preprocess a source file
+tests/test_tcp_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cpp.i
+.PHONY : tests/test_tcp_server.cpp.i
+
+tests/test_tcp_server.s: tests/test_tcp_server.cpp.s
+.PHONY : tests/test_tcp_server.s
+
+# target to generate assembly for a file
+tests/test_tcp_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_tcp_server.dir/build.make CMakeFiles/test_tcp_server.dir/tests/test_tcp_server.cpp.s
+.PHONY : tests/test_tcp_server.cpp.s
+
 tests/test_thread.o: tests/test_thread.cpp.o
 .PHONY : tests/test_thread.o
 
@@ -1030,6 +1176,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... aboo"
+	@echo "... echo_server"
 	@echo "... test"
 	@echo "... test_address"
 	@echo "... test_bytearray"
@@ -1041,6 +1188,7 @@ help:
 	@echo "... test_iomanager"
 	@echo "... test_scheduler"
 	@echo "... test_socket"
+	@echo "... test_tcp_server"
 	@echo "... test_thread"
 	@echo "... test_util"
 	@echo "... aboo/address.o"
@@ -1085,6 +1233,15 @@ help:
 	@echo "... aboo/socket.o"
 	@echo "... aboo/socket.i"
 	@echo "... aboo/socket.s"
+	@echo "... aboo/socket_stream.o"
+	@echo "... aboo/socket_stream.i"
+	@echo "... aboo/socket_stream.s"
+	@echo "... aboo/stream.o"
+	@echo "... aboo/stream.i"
+	@echo "... aboo/stream.s"
+	@echo "... aboo/tcp_server.o"
+	@echo "... aboo/tcp_server.i"
+	@echo "... aboo/tcp_server.s"
 	@echo "... aboo/thread.o"
 	@echo "... aboo/thread.i"
 	@echo "... aboo/thread.s"
@@ -1094,6 +1251,9 @@ help:
 	@echo "... aboo/util.o"
 	@echo "... aboo/util.i"
 	@echo "... aboo/util.s"
+	@echo "... examples/echo_server.o"
+	@echo "... examples/echo_server.i"
+	@echo "... examples/echo_server.s"
 	@echo "... tests/test.o"
 	@echo "... tests/test.i"
 	@echo "... tests/test.s"
@@ -1127,6 +1287,9 @@ help:
 	@echo "... tests/test_socket.o"
 	@echo "... tests/test_socket.i"
 	@echo "... tests/test_socket.s"
+	@echo "... tests/test_tcp_server.o"
+	@echo "... tests/test_tcp_server.i"
+	@echo "... tests/test_tcp_server.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"

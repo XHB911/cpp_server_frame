@@ -14,8 +14,13 @@ set(LIB_SRC
 	aboo/config.cpp
 	aboo/fd_manager.cpp
 	aboo/fiber.cpp
+	aboo/uri.rl.cpp
 	aboo/http/http.cpp
 	aboo/http/http_parser.cpp
+	aboo/http/http_session.cpp
+	aboo/http/http_server.cpp
+	aboo/http/http_connection.cpp
+	aboo/http/servlet.cpp
 	aboo/http/http11_parser.rl.cpp
 	aboo/http/httpclient_parser.rl.cpp
 	aboo/tcp_server.cpp
@@ -117,6 +122,21 @@ add_executable(echo_server examples/echo_server.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(echo_server aboo)
 target_link_libraries(echo_server ${LIB_LIB})
+
+add_executable(test_http_server tests/test_http_server.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_http_server aboo)
+target_link_libraries(test_http_server ${LIB_LIB})
+
+add_executable(test_http_connection tests/test_http_connection.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_http_connection aboo)
+target_link_libraries(test_http_connection ${LIB_LIB})
+
+add_executable(test_uri tests/test_uri.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_uri aboo)
+target_link_libraries(test_uri ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

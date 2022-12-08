@@ -1,6 +1,8 @@
 #include "http_session.h"
 #include "http_parser.h"
 
+#include <iostream>
+
 namespace aboo {
 namespace http {
 
@@ -12,7 +14,7 @@ HttpRequest::ptr HttpSession::recvRequest() {
 	HttpRequestParser::ptr parser(new HttpRequestParser);
 	uint64_t buff_size = HttpRequestParser::GetHttpRequestBufferSize();
 	//uint64_t buff_size = 100;
-	std::shared_ptr<char> buffer(new char[HttpRequestParser::GetHttpRequestBufferSize()], [](char* ptr){
+	std::shared_ptr<char> buffer(new char[buff_size], [](char* ptr){
 		delete[] ptr;
 		ptr = nullptr;
 	});
@@ -61,6 +63,10 @@ HttpRequest::ptr HttpSession::recvRequest() {
 			}
 		}
 		parser->getData()->setBody(body);
+	}
+	std::string keep_alive = parser->getData()->getHeader("Connection");
+	if (!strcasecmp(keep_alive.c_str(), "keep-alive")) {
+		parser->getData()->setClose(false);
 	}
 	return parser->getData();
 }

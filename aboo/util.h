@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <vector>
 #include <string>
+#include <time.h>
 
 namespace aboo {
 
@@ -20,6 +21,15 @@ std::string BacktraceToString(int size = 64, int skip = 2, const std::string& pr
 // 时间ms/us
 uint64_t GetCurrentMS();
 uint64_t GetCurrentUS();
+
+std::string Time2Str(time_t ts = time(0), const std::string& format = "%Y-%m-%d %H:%M:%S");
+
+class FSUtil {
+public:
+	static void ListAllFile(std::vector<std::string>& files
+							, const std::string& path
+							, const std::string& subfix);
+};
 
 }
 

@@ -1,6 +1,10 @@
 #include "config.h"
+#include "env.h"
+#include "util.h"
 
 namespace aboo {
+
+static aboo::Logger::ptr g_logger = ABOO_LOG_NAME("system");
 
 ConfigVarBase::ptr Config::LookupBase(const std::string& name) {
 	RWMutexType::ReadLock lock(GetMutex());
@@ -12,7 +16,7 @@ ConfigVarBase::ptr Config::LookupBase(const std::string& name) {
 
 static void ListAllMember(const std::string& prefix, const YAML::Node& node, std::list<std::pair<std::string , const YAML::Node> >& output) {
 	if (prefix.find_first_not_of("abcdefghijklmnopqrstuvwxyz._0123456789") != std::string::npos) {
-		ABOO_LOG_ERROR(ABOO_LOG_ROOT()) << "Config invalid name: " << prefix << " : " << node;
+		ABOO_LOG_ERROR(g_logger)<< "Config invalid name: " << prefix << " : " << node;
 		return;
 	}
 	output.push_back(std::make_pair(prefix, node));
@@ -44,6 +48,22 @@ void Config::LoadFromYaml(const YAML::Node& root) {
 				ss << i.second;
 				var->fromString(ss.str());
 			}
+		}
+	}
+}
+
+void Config::LoadFromConfDir(const std::string& path) {
+	std::string absolute_path = aboo::EnvMgr::getInstance()->getAbsolutePath(path);
+	std::vector<std::string> files;
+	FSUtil::ListAllFile(files, absolute_path, ".yml");
+
+	for (auto& i : files) {
+		try {
+			YAML::Node root = YAML::LoadFile(i);
+			LoadFromYaml(root);
+			ABOO_LOG_INFO(g_logger) << "LoadConfFile file=" << i << " ok";
+		} catch (...) {
+			ABOO_LOG_ERROR(g_logger) << "LoadConfFile file=" << i << " failure";
 		}
 	}
 }

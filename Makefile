@@ -366,6 +366,45 @@ test_uri/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_uri.dir/build.make CMakeFiles/test_uri.dir/build
 .PHONY : test_uri/fast
 
+#=============================================================================
+# Target rules for targets named my_http_server
+
+# Build rule for target.
+my_http_server: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 my_http_server
+.PHONY : my_http_server
+
+# fast build rule for target.
+my_http_server/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_http_server.dir/build.make CMakeFiles/my_http_server.dir/build
+.PHONY : my_http_server/fast
+
+#=============================================================================
+# Target rules for targets named test_daemon
+
+# Build rule for target.
+test_daemon: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_daemon
+.PHONY : test_daemon
+
+# fast build rule for target.
+test_daemon/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_daemon.dir/build.make CMakeFiles/test_daemon.dir/build
+.PHONY : test_daemon/fast
+
+#=============================================================================
+# Target rules for targets named test_env
+
+# Build rule for target.
+test_env: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_env
+.PHONY : test_env
+
+# fast build rule for target.
+test_env/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_env.dir/build.make CMakeFiles/test_env.dir/build
+.PHONY : test_env/fast
+
 aboo/address.o: aboo/address.cpp.o
 .PHONY : aboo/address.o
 
@@ -437,6 +476,54 @@ aboo/config.s: aboo/config.cpp.s
 aboo/config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/config.cpp.s
 .PHONY : aboo/config.cpp.s
+
+aboo/daemon.o: aboo/daemon.cpp.o
+.PHONY : aboo/daemon.o
+
+# target to build an object file
+aboo/daemon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/daemon.cpp.o
+.PHONY : aboo/daemon.cpp.o
+
+aboo/daemon.i: aboo/daemon.cpp.i
+.PHONY : aboo/daemon.i
+
+# target to preprocess a source file
+aboo/daemon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/daemon.cpp.i
+.PHONY : aboo/daemon.cpp.i
+
+aboo/daemon.s: aboo/daemon.cpp.s
+.PHONY : aboo/daemon.s
+
+# target to generate assembly for a file
+aboo/daemon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/daemon.cpp.s
+.PHONY : aboo/daemon.cpp.s
+
+aboo/env.o: aboo/env.cpp.o
+.PHONY : aboo/env.o
+
+# target to build an object file
+aboo/env.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/env.cpp.o
+.PHONY : aboo/env.cpp.o
+
+aboo/env.i: aboo/env.cpp.i
+.PHONY : aboo/env.i
+
+# target to preprocess a source file
+aboo/env.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/env.cpp.i
+.PHONY : aboo/env.cpp.i
+
+aboo/env.s: aboo/env.cpp.s
+.PHONY : aboo/env.s
+
+# target to generate assembly for a file
+aboo/env.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/env.cpp.s
+.PHONY : aboo/env.cpp.s
 
 aboo/fd_manager.o: aboo/fd_manager.cpp.o
 .PHONY : aboo/fd_manager.o
@@ -990,6 +1077,30 @@ examples/echo_server.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/echo_server.dir/build.make CMakeFiles/echo_server.dir/examples/echo_server.cpp.s
 .PHONY : examples/echo_server.cpp.s
 
+samples/my_http_server.o: samples/my_http_server.cpp.o
+.PHONY : samples/my_http_server.o
+
+# target to build an object file
+samples/my_http_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_http_server.dir/build.make CMakeFiles/my_http_server.dir/samples/my_http_server.cpp.o
+.PHONY : samples/my_http_server.cpp.o
+
+samples/my_http_server.i: samples/my_http_server.cpp.i
+.PHONY : samples/my_http_server.i
+
+# target to preprocess a source file
+samples/my_http_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_http_server.dir/build.make CMakeFiles/my_http_server.dir/samples/my_http_server.cpp.i
+.PHONY : samples/my_http_server.cpp.i
+
+samples/my_http_server.s: samples/my_http_server.cpp.s
+.PHONY : samples/my_http_server.s
+
+# target to generate assembly for a file
+samples/my_http_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/my_http_server.dir/build.make CMakeFiles/my_http_server.dir/samples/my_http_server.cpp.s
+.PHONY : samples/my_http_server.cpp.s
+
 tests/test.o: tests/test.cpp.o
 .PHONY : tests/test.o
 
@@ -1085,6 +1196,54 @@ tests/test_config.s: tests/test_config.cpp.s
 tests/test_config.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/tests/test_config.cpp.s
 .PHONY : tests/test_config.cpp.s
+
+tests/test_daemon.o: tests/test_daemon.cpp.o
+.PHONY : tests/test_daemon.o
+
+# target to build an object file
+tests/test_daemon.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_daemon.dir/build.make CMakeFiles/test_daemon.dir/tests/test_daemon.cpp.o
+.PHONY : tests/test_daemon.cpp.o
+
+tests/test_daemon.i: tests/test_daemon.cpp.i
+.PHONY : tests/test_daemon.i
+
+# target to preprocess a source file
+tests/test_daemon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_daemon.dir/build.make CMakeFiles/test_daemon.dir/tests/test_daemon.cpp.i
+.PHONY : tests/test_daemon.cpp.i
+
+tests/test_daemon.s: tests/test_daemon.cpp.s
+.PHONY : tests/test_daemon.s
+
+# target to generate assembly for a file
+tests/test_daemon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_daemon.dir/build.make CMakeFiles/test_daemon.dir/tests/test_daemon.cpp.s
+.PHONY : tests/test_daemon.cpp.s
+
+tests/test_env.o: tests/test_env.cpp.o
+.PHONY : tests/test_env.o
+
+# target to build an object file
+tests/test_env.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_env.dir/build.make CMakeFiles/test_env.dir/tests/test_env.cpp.o
+.PHONY : tests/test_env.cpp.o
+
+tests/test_env.i: tests/test_env.cpp.i
+.PHONY : tests/test_env.i
+
+# target to preprocess a source file
+tests/test_env.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_env.dir/build.make CMakeFiles/test_env.dir/tests/test_env.cpp.i
+.PHONY : tests/test_env.cpp.i
+
+tests/test_env.s: tests/test_env.cpp.s
+.PHONY : tests/test_env.s
+
+# target to generate assembly for a file
+tests/test_env.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_env.dir/build.make CMakeFiles/test_env.dir/tests/test_env.cpp.s
+.PHONY : tests/test_env.cpp.s
 
 tests/test_fiber.o: tests/test_fiber.cpp.o
 .PHONY : tests/test_fiber.o
@@ -1408,10 +1567,13 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... aboo"
 	@echo "... echo_server"
+	@echo "... my_http_server"
 	@echo "... test"
 	@echo "... test_address"
 	@echo "... test_bytearray"
 	@echo "... test_config"
+	@echo "... test_daemon"
+	@echo "... test_env"
 	@echo "... test_fiber"
 	@echo "... test_hook"
 	@echo "... test_http"
@@ -1434,6 +1596,12 @@ help:
 	@echo "... aboo/config.o"
 	@echo "... aboo/config.i"
 	@echo "... aboo/config.s"
+	@echo "... aboo/daemon.o"
+	@echo "... aboo/daemon.i"
+	@echo "... aboo/daemon.s"
+	@echo "... aboo/env.o"
+	@echo "... aboo/env.i"
+	@echo "... aboo/env.s"
 	@echo "... aboo/fd_manager.o"
 	@echo "... aboo/fd_manager.i"
 	@echo "... aboo/fd_manager.s"
@@ -1503,6 +1671,9 @@ help:
 	@echo "... examples/echo_server.o"
 	@echo "... examples/echo_server.i"
 	@echo "... examples/echo_server.s"
+	@echo "... samples/my_http_server.o"
+	@echo "... samples/my_http_server.i"
+	@echo "... samples/my_http_server.s"
 	@echo "... tests/test.o"
 	@echo "... tests/test.i"
 	@echo "... tests/test.s"
@@ -1515,6 +1686,12 @@ help:
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
+	@echo "... tests/test_daemon.o"
+	@echo "... tests/test_daemon.i"
+	@echo "... tests/test_daemon.s"
+	@echo "... tests/test_env.o"
+	@echo "... tests/test_env.i"
+	@echo "... tests/test_env.s"
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"

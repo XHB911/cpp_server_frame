@@ -4,7 +4,7 @@ project(aboo)
 #include (cmake/utils.cmake) # 遗留问题
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function")
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -ggdb -std=c++17 -Wall -Wno-deprecated -Werror -Wno-unused-function")
 
 link_directories(/usr/local/lib)
 
@@ -12,6 +12,8 @@ set(LIB_SRC
 	aboo/address.cpp
 	aboo/bytearray.cpp
 	aboo/config.cpp
+	aboo/env.cpp
+	aboo/daemon.cpp
 	aboo/fd_manager.cpp
 	aboo/fiber.cpp
 	aboo/uri.rl.cpp
@@ -137,6 +139,21 @@ add_executable(test_uri tests/test_uri.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_uri aboo)
 target_link_libraries(test_uri ${LIB_LIB})
+
+add_executable(my_http_server samples/my_http_server.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(my_http_server aboo)
+target_link_libraries(my_http_server ${LIB_LIB})
+
+add_executable(test_daemon tests/test_daemon.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_daemon aboo)
+target_link_libraries(test_daemon ${LIB_LIB})
+
+add_executable(test_env tests/test_env.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_env aboo)
+target_link_libraries(test_env ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

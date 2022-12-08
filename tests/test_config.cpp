@@ -1,6 +1,7 @@
 #include "../aboo/config.h"
 #include "../aboo/log.h"
 #include <yaml-cpp/yaml.h>
+#include "../aboo/env.h"
 #include <iostream>
 
 aboo::ConfigVar<int>::ptr g_int_value_config = aboo::Config::Lookup("system.port", (int)8080, "system port");
@@ -183,11 +184,19 @@ void test_log() {
 	ABOO_LOG_INFO(system_log) << "hello system" << std::endl;
 }
 
+void test_loadconf() {
+	aboo::Config::LoadFromConfDir("conf");
+}
+
 int main(int argc, char **argv) {
 	// test_config();
 	// test_yaml();
 	// test_class();
-	test_log();
+	// test_log();
+	aboo::EnvMgr::getInstance()->init(argc, argv);
+	test_loadconf();
+
+	std::cout << "==================================================\n";
 
 	aboo::Config::Visit([](aboo::ConfigVarBase::ptr var) {
 		ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "name=" << var->getName() << " description=" << var->getDescription() << " typename=" << var->getTypeName() << " value=" << var->toString();

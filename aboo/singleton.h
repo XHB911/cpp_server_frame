@@ -1,6 +1,8 @@
 #ifndef __ABOO_SINGLETON_H__
 #define __ABOO_SINGLETON_H__
 
+#include <memory>
+
 namespace aboo {
 
 template<class T, class X = void, int N = 0>

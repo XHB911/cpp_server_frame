@@ -405,6 +405,19 @@ test_env/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_env.dir/build.make CMakeFiles/test_env.dir/build
 .PHONY : test_env/fast
 
+#=============================================================================
+# Target rules for targets named test_application
+
+# Build rule for target.
+test_application: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_application
+.PHONY : test_application
+
+# fast build rule for target.
+test_application/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_application.dir/build.make CMakeFiles/test_application.dir/build
+.PHONY : test_application/fast
+
 aboo/address.o: aboo/address.cpp.o
 .PHONY : aboo/address.o
 
@@ -428,6 +441,30 @@ aboo/address.s: aboo/address.cpp.s
 aboo/address.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/address.cpp.s
 .PHONY : aboo/address.cpp.s
+
+aboo/application.o: aboo/application.cpp.o
+.PHONY : aboo/application.o
+
+# target to build an object file
+aboo/application.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/application.cpp.o
+.PHONY : aboo/application.cpp.o
+
+aboo/application.i: aboo/application.cpp.i
+.PHONY : aboo/application.i
+
+# target to preprocess a source file
+aboo/application.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/application.cpp.i
+.PHONY : aboo/application.cpp.i
+
+aboo/application.s: aboo/application.cpp.s
+.PHONY : aboo/application.s
+
+# target to generate assembly for a file
+aboo/application.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/application.cpp.s
+.PHONY : aboo/application.cpp.s
 
 aboo/bytearray.o: aboo/bytearray.cpp.o
 .PHONY : aboo/bytearray.o
@@ -1149,6 +1186,30 @@ tests/test_address.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cpp.s
 .PHONY : tests/test_address.cpp.s
 
+tests/test_appliaction.o: tests/test_appliaction.cpp.o
+.PHONY : tests/test_appliaction.o
+
+# target to build an object file
+tests/test_appliaction.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_application.dir/build.make CMakeFiles/test_application.dir/tests/test_appliaction.cpp.o
+.PHONY : tests/test_appliaction.cpp.o
+
+tests/test_appliaction.i: tests/test_appliaction.cpp.i
+.PHONY : tests/test_appliaction.i
+
+# target to preprocess a source file
+tests/test_appliaction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_application.dir/build.make CMakeFiles/test_application.dir/tests/test_appliaction.cpp.i
+.PHONY : tests/test_appliaction.cpp.i
+
+tests/test_appliaction.s: tests/test_appliaction.cpp.s
+.PHONY : tests/test_appliaction.s
+
+# target to generate assembly for a file
+tests/test_appliaction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_application.dir/build.make CMakeFiles/test_application.dir/tests/test_appliaction.cpp.s
+.PHONY : tests/test_appliaction.cpp.s
+
 tests/test_bytearray.o: tests/test_bytearray.cpp.o
 .PHONY : tests/test_bytearray.o
 
@@ -1570,6 +1631,7 @@ help:
 	@echo "... my_http_server"
 	@echo "... test"
 	@echo "... test_address"
+	@echo "... test_application"
 	@echo "... test_bytearray"
 	@echo "... test_config"
 	@echo "... test_daemon"
@@ -1590,6 +1652,9 @@ help:
 	@echo "... aboo/address.o"
 	@echo "... aboo/address.i"
 	@echo "... aboo/address.s"
+	@echo "... aboo/application.o"
+	@echo "... aboo/application.i"
+	@echo "... aboo/application.s"
 	@echo "... aboo/bytearray.o"
 	@echo "... aboo/bytearray.i"
 	@echo "... aboo/bytearray.s"
@@ -1680,6 +1745,9 @@ help:
 	@echo "... tests/test_address.o"
 	@echo "... tests/test_address.i"
 	@echo "... tests/test_address.s"
+	@echo "... tests/test_appliaction.o"
+	@echo "... tests/test_appliaction.i"
+	@echo "... tests/test_appliaction.s"
 	@echo "... tests/test_bytearray.o"
 	@echo "... tests/test_bytearray.i"
 	@echo "... tests/test_bytearray.s"

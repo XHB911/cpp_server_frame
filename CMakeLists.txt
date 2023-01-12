@@ -10,6 +10,7 @@ link_directories(/usr/local/lib)
 
 set(LIB_SRC
 	aboo/address.cpp
+	aboo/application.cpp
 	aboo/bytearray.cpp
 	aboo/config.cpp
 	aboo/env.cpp
@@ -154,6 +155,11 @@ add_executable(test_env tests/test_env.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_env aboo)
 target_link_libraries(test_env ${LIB_LIB})
+
+add_executable(test_application tests/test_appliaction.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_application aboo)
+target_link_libraries(test_application ${LIB_LIB})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

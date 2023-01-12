@@ -195,12 +195,11 @@ int main(int argc, char **argv) {
 	// test_log();
 	aboo::EnvMgr::getInstance()->init(argc, argv);
 	test_loadconf();
-
 	std::cout << "==================================================\n";
-
+	sleep(10);
+	test_loadconf();
 	aboo::Config::Visit([](aboo::ConfigVarBase::ptr var) {
 		ABOO_LOG_INFO(ABOO_LOG_ROOT()) << "name=" << var->getName() << " description=" << var->getDescription() << " typename=" << var->getTypeName() << " value=" << var->toString();
 	});
-
 	return 0;
 }

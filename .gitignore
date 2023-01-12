@@ -1,4 +1,5 @@
+.gitignore
 CMakeCache.txt
 CMakeFiles/
 cmake_install.cmake
-*log.txt
+*.txt

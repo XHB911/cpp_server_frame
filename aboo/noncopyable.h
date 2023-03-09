@@ -2,6 +2,11 @@
 #define __ABOO_NONCOPYABLE_H__
 
 namespace aboo {
+
+
+/**
+ * @brief 对象无法拷贝,赋值
+ */
 class Noncopyable {
 public:
 	Noncopyable() = default;

@@ -10,7 +10,7 @@ int count = 0;
 
 void fun1() {
 	ABOO_LOG_INFO(g_logger) << "thread_id" << aboo::Thread::GetName() << " this.name: " << aboo::Thread::GetThis()->getName() << " id: " << aboo::getThreadId() << " this.id: " << aboo::Thread::GetThis()->getId();
-	for (int i = 0; i < 100000; i++) {
+	for (int i = 0; i < 10; i++) {
 		//aboo::RWMutex::WriteLock lock(s_mutex);
 		aboo::Mutex::Lock lock(s_mutex);
 		count += 1;
@@ -18,21 +18,21 @@ void fun1() {
 }
 
 void fun2() {
-	for (int i = 0; i < 10000; i++) {
-		ABOO_LOG_INFO(g_logger) << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	for (int i = 0; i < 10; i++) {
+		ABOO_LOG_INFO(g_logger) << "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx " << i;
 	}
 }
 
 void fun3() {
-	for (int i = 0; i < 10000; i++) {
-		ABOO_LOG_INFO(g_logger) << "========================================================";
+	for (int i = 0; i < 10; i++) {
+		ABOO_LOG_INFO(g_logger) << "======================================================== " << i;
 	}
 }
 
 int main(int argc, char** argv) {
 	ABOO_LOG_INFO(g_logger) << "thread test begin";
-	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/log2.yml");
-	aboo::Config::LoadFromYaml(root);
+//	YAML::Node root = YAML::LoadFile("/home/hb/cpp_server_frame/bin/conf/log2.yml");
+//	aboo::Config::LoadFromYaml(root);
 
 	std::vector<aboo::Thread::ptr> thrs;
 	for (int i = 0; i < 2; i++) {

@@ -53,6 +53,7 @@ Thread::Thread(std::function<void()> cb, const std::string& name) : m_cb(cb), m_
 	int rt = pthread_create(&m_thread, nullptr, &Thread::run, this);
 	if (rt) {
 		ABOO_LOG_ERROR(g_logger) << "pthread_create thread fail, rt=" << rt << " name=" << name;
+		std::cout << "pthread_create thread fail, rt=" << rt << " name=" << name;
 		throw std::logic_error("pthread_create error");
 	}
 	m_semaphore.wait();

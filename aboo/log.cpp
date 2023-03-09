@@ -73,7 +73,7 @@ void LogEvent::format(const char *fmt, va_list al) {
 	}
 }
 
- void LogAppender::setFormatter(LogFormatter::ptr val) {
+void LogAppender::setFormatter(LogFormatter::ptr val) {
 	MutexType::Lock lock(m_mutex);
 	m_formatter = val;
 	if (m_formatter) {
@@ -81,7 +81,7 @@ void LogEvent::format(const char *fmt, va_list al) {
 	} else {
 		m_hasFormatter = false;
 	}
- }
+}
 
 LogFormatter::ptr LogAppender::getFormatter() {
 	MutexType::Lock lock(m_mutex);
@@ -239,7 +239,6 @@ void Logger::setFormatter(std::string val) {
 		std::cout << "Logger setFormatter name=" << m_name << " value=" << val << " invalid formatter" << std::endl;
 		return;
 	}
-	// m_formatter = new_val;
 	setFormatter(new_val);
 }
 
@@ -333,7 +332,7 @@ void FileLogAppender::log(std::shared_ptr<Logger> logger, LogLevel::Level level,
 		MutexType::Lock lock(m_mutex);
 		m_formatter->format(m_filestream, logger, level, event);
 		if (!m_filestream) {
-			std::cout << "error" << std::endl;
+			std::cout << "Error FileLogAppender::log() m_filestream not exit" << std::endl;
 		}
 	}
 }

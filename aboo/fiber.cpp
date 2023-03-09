@@ -7,16 +7,27 @@
 #include <atomic>
 
 namespace aboo {
+
+// 协程 ID
 static std::atomic<uint64_t> s_fiber_id {0};
+
+// 协程数量
 static std::atomic<uint64_t> s_fiber_count {0};
 
 static Logger::ptr g_logger = ABOO_LOG_NAME("system");
 
+// 线程局部变量，当前线程正在运行的协程
 static thread_local Fiber* t_fiber = nullptr;
+
+// 线程局部变量，当前线程的主协程，切换到这个协程，就相当于切换到了主协程中运行，智能指针形式
 static thread_local Fiber::ptr t_threadFiber = nullptr;
 
+// 通过配置加载协程栈参数
 static ConfigVar<uint32_t>::ptr g_fiber_stack_size = Config::Lookup<uint32_t>("fiber.stack_size", 1024 * 1024, "fiber stack size");
 
+/**
+ * 申请堆空间类，封装malloc与free
+ */
 class MallocStackAllocator {
 public:
 	static void* Alloc(size_t size) {
@@ -61,6 +72,7 @@ Fiber::Fiber(std::function<void()> cb, size_t stacksize, bool use_caller) : m_id
 	m_ctx.uc_stack.ss_sp = m_stack;
 	m_ctx.uc_stack.ss_size = m_stacksize;
 
+	// makecontext执行完后，ucp就与函数func绑定了，调用setcontext或swapcontext激活ucp时，func就会被运行
 	if (!use_caller) {
 		makecontext(&m_ctx, &Fiber::MainFunc, 0);
 	} else {
@@ -83,7 +95,7 @@ Fiber::~Fiber(){
 			SetThis(nullptr);
 		}
 	}
-	ABOO_LOG_DEBUG(g_logger) << "Fiber::~Fiber() id=" << m_id;
+	ABOO_LOG_DEBUG(g_logger) << "Fiber::~Fiber() id=" << m_id << " total=" << s_fiber_count;
 }
 
 // 重置协程函数并重置状态->TERM, INIT
@@ -106,14 +118,14 @@ void Fiber::call() {
 	SetThis(this);
 	m_state = EXEC;
 	if (swapcontext(&t_threadFiber->m_ctx, &m_ctx)) {
-		ABOO_ASSERT2(false, "swapcontext");
+		ABOO_ASSERT2(false, "call swapcontext");
 	}
 }
 
 void Fiber::back() {
 	SetThis(t_threadFiber.get());
 	if (swapcontext(&m_ctx, &t_threadFiber->m_ctx)) {
-		ABOO_ASSERT2(false, "swapcontext");
+		ABOO_ASSERT2(false, "back swapcontext");
 	}
 }
 
@@ -123,7 +135,7 @@ void Fiber::swapIn() {
 	ABOO_ASSERT(m_state != EXEC);
 	m_state = EXEC;
 	if (swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx)) {
-		ABOO_ASSERT2(false, "swapcontext");
+		ABOO_ASSERT2(false, "swapIn swapcontext");
 	}
 }
 
@@ -131,7 +143,7 @@ void Fiber::swapIn() {
 void Fiber::swapOut() {
 	SetThis(Scheduler::GetMainFiber());
 	if (swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx)) {
-		ABOO_ASSERT2(false, "swapcontext");
+		ABOO_ASSERT2(false, "swapOut swapcontext");
 	}
 }
 

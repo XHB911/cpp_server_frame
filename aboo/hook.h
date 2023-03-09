@@ -10,7 +10,14 @@
 #include <stdint.h>
 
 namespace aboo {
+    /**
+     * @brief 当前线程是否 hook
+     */
 	bool is_hook_enable();
+
+    /**
+     * @brief 设置当前线程的 hook 状态
+     */
 	void set_hook_enable(bool flag);
 }
 

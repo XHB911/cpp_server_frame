@@ -78,32 +78,46 @@ struct timer_info {
 	int cancelled = 0;
 };
 
+/**
+ * @brief accept和read/write/recv/send等IO接口的hook模板实现
+ * @param[in] fd 文件描述符
+ * @param[in] fun HOOK 之后的系统调用
+ * @param[in] hook_fun_name，要hook的函数名
+ * @param[in] event 要设置的事件
+ * @param[in] timeout_so 所获取超时时间的类型，如果是READ，则返回读超时时间，否则返回写超时时间
+ * @param[in] args 被hook 系统调用所需的参数
+ */
 template<typename OriginFun, typename ... Args>
 static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name, uint32_t event, int timeout_so, Args&&... args) {
+	// 如果没有hook，则直接返回原系统调用的结果。
 	if (!aboo::t_hook_enable) {
 		return fun(fd, std::forward<Args>(args)...);
 	}
 
 	//ABOO_LOG_DEBUG(g_logger) << "do_io<" << hook_fun_name << ">";
-
+	// 从文件句柄管理器中得到对应的文件句柄上下文类
 	aboo::FdCtx::ptr ctx = aboo::FdMgr::getInstance()->get(fd);
 	if (!ctx) {
 		return fun(fd, std::forward<Args>(args)...);
 	}
 
+	// 判断当前的文件句柄是否关闭
 	if (ctx->isClosed()) {
 		errno = EBADF;
 		return -1;
 	}
 
+	// 如果不是 socket 套接字或者用户将该文件句柄设为非阻塞，则直接返回原系统调用的结果
 	if (!ctx->isSocket() || ctx->getUserNonblock()) {
 		return fun(fd, std::forward<Args>(args)...);
 	}
 
+	// 获取文件句柄的超时时间
 	uint64_t to = ctx->getTimeout(timeout_so);
 	std::shared_ptr<timer_info> tinfo(new timer_info);
 
 retry:
+	// 重复执行原系统调用
 	ssize_t n = fun(fd, std::forward<Args>(args)...);
 	while (n == -1 && errno == EINTR) {
 		n = fun(fd, std::forward<Args>(args)...);

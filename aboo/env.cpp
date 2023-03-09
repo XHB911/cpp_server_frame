@@ -16,7 +16,7 @@ bool Env::init(int argc, char** argv) {
 	char path[1024] = {0};
 	sprintf(link, "/proc/%d/exe", getpid());
 	if (readlink(link, path, sizeof(path)) == -1) {
-		ABOO_LOG_ERROR(g_logger) << "readlink failure link=" << link << " path=" << path;
+		ABOO_LOG_ERROR(g_logger) << "readlink failure link=" << link << " path=" << path << " error=" << errno << " strerr=" << strerror(errno);
 		return false;
 	}
 	m_exe = path;

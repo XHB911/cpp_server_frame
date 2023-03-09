@@ -208,7 +208,7 @@ bool Address::operator==(const Address& rhs) const {
 }
 
 bool Address::operator!=(const Address& rhs) const {
-	return	!(*this == rhs);
+	return !(*this == rhs);
 }
 
 IPAddress::ptr IPAddress::Create(const char* address, uint16_t port) {

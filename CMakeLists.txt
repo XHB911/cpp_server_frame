@@ -31,6 +31,7 @@ set(LIB_SRC
 	aboo/log.cpp
 	aboo/hook.cpp
 	aboo/thread.cpp
+	aboo/threadpool.cpp
 	aboo/scheduler.cpp
 	aboo/socket.cpp
 	aboo/stream.cpp
@@ -65,6 +66,11 @@ add_executable(test_thread tests/test_thread.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__
 add_dependencies(test_thread aboo)
 target_link_libraries(test_thread ${LIB_LIB})
+
+add_executable(test_threadpool tests/test_threadpool.cpp)
+#force_redefine_file_macro_for_sources(test_config) #__FILE__
+add_dependencies(test_threadpool aboo)
+target_link_libraries(test_threadpool ${LIB_LIB})
 
 add_executable(test_util tests/test_util.cpp)
 #force_redefine_file_macro_for_sources(test_config) #__FILE__

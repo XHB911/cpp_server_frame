@@ -172,6 +172,19 @@ test_thread/fast:
 .PHONY : test_thread/fast
 
 #=============================================================================
+# Target rules for targets named test_threadpool
+
+# Build rule for target.
+test_threadpool: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_threadpool
+.PHONY : test_threadpool
+
+# fast build rule for target.
+test_threadpool/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_threadpool.dir/build.make CMakeFiles/test_threadpool.dir/build
+.PHONY : test_threadpool/fast
+
+#=============================================================================
 # Target rules for targets named test_util
 
 # Build rule for target.
@@ -1018,6 +1031,30 @@ aboo/thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/thread.cpp.s
 .PHONY : aboo/thread.cpp.s
 
+aboo/threadpool.o: aboo/threadpool.cpp.o
+.PHONY : aboo/threadpool.o
+
+# target to build an object file
+aboo/threadpool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/threadpool.cpp.o
+.PHONY : aboo/threadpool.cpp.o
+
+aboo/threadpool.i: aboo/threadpool.cpp.i
+.PHONY : aboo/threadpool.i
+
+# target to preprocess a source file
+aboo/threadpool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/threadpool.cpp.i
+.PHONY : aboo/threadpool.cpp.i
+
+aboo/threadpool.s: aboo/threadpool.cpp.s
+.PHONY : aboo/threadpool.s
+
+# target to generate assembly for a file
+aboo/threadpool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/aboo.dir/build.make CMakeFiles/aboo.dir/aboo/threadpool.cpp.s
+.PHONY : aboo/threadpool.cpp.s
+
 aboo/timer.o: aboo/timer.cpp.o
 .PHONY : aboo/timer.o
 
@@ -1570,6 +1607,30 @@ tests/test_thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cpp.s
 .PHONY : tests/test_thread.cpp.s
 
+tests/test_threadpool.o: tests/test_threadpool.cpp.o
+.PHONY : tests/test_threadpool.o
+
+# target to build an object file
+tests/test_threadpool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_threadpool.dir/build.make CMakeFiles/test_threadpool.dir/tests/test_threadpool.cpp.o
+.PHONY : tests/test_threadpool.cpp.o
+
+tests/test_threadpool.i: tests/test_threadpool.cpp.i
+.PHONY : tests/test_threadpool.i
+
+# target to preprocess a source file
+tests/test_threadpool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_threadpool.dir/build.make CMakeFiles/test_threadpool.dir/tests/test_threadpool.cpp.i
+.PHONY : tests/test_threadpool.cpp.i
+
+tests/test_threadpool.s: tests/test_threadpool.cpp.s
+.PHONY : tests/test_threadpool.s
+
+# target to generate assembly for a file
+tests/test_threadpool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_threadpool.dir/build.make CMakeFiles/test_threadpool.dir/tests/test_threadpool.cpp.s
+.PHONY : tests/test_threadpool.cpp.s
+
 tests/test_uri.o: tests/test_uri.cpp.o
 .PHONY : tests/test_uri.o
 
@@ -1647,6 +1708,7 @@ help:
 	@echo "... test_socket"
 	@echo "... test_tcp_server"
 	@echo "... test_thread"
+	@echo "... test_threadpool"
 	@echo "... test_uri"
 	@echo "... test_util"
 	@echo "... aboo/address.o"
@@ -1724,6 +1786,9 @@ help:
 	@echo "... aboo/thread.o"
 	@echo "... aboo/thread.i"
 	@echo "... aboo/thread.s"
+	@echo "... aboo/threadpool.o"
+	@echo "... aboo/threadpool.i"
+	@echo "... aboo/threadpool.s"
 	@echo "... aboo/timer.o"
 	@echo "... aboo/timer.i"
 	@echo "... aboo/timer.s"
@@ -1793,6 +1858,9 @@ help:
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
+	@echo "... tests/test_threadpool.o"
+	@echo "... tests/test_threadpool.i"
+	@echo "... tests/test_threadpool.s"
 	@echo "... tests/test_uri.o"
 	@echo "... tests/test_uri.i"
 	@echo "... tests/test_uri.s"
